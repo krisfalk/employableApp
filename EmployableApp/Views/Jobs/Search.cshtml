@@ -7,11 +7,11 @@
 <h2>Search</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+
+    <div class="form-horizontal"></div>
         <h4>Search</h4>
 
 <div class="container heading-box">
@@ -39,11 +39,13 @@
 
         <div id="result">
         </div>
-        <button onclick="saveJob()"> Save Checked Jobs</button> 
+        <div id="save">
+            <button onclick="saveJob()"> Save Checked Jobs</button>
+        </div>
+        <div id="submit">
+            <input type="submit" value="Finish Saving" class="btn" />
+        </div>
         <h3 id="display-message" style="text-align: center"></h3>
-
-
-      
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -54,4 +56,5 @@
 <script type="text/javascript" src="~/scripts/pagination.js"></script>
 <script type="text/javascript" src="~/scripts/search.js"></script>
 
+}
 }
