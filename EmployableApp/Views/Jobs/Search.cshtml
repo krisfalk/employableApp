@@ -18,141 +18,40 @@
     <div class="row" style="margin-top: 10vh">
         <div class="col-sm-1>"></div>
         <div class="input-group col-sm-10">
-            <input type="text" class="form-control input-lg" placeholder="Search iTunes" id="search-input" />
-            <span class="input-group-btn">
-                <button class="btn btn-info btn-lg" type="button" onclick="search()">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+            <input type="text" class="form-control input-lg" placeholder="Keyword Search" id="search-input" />
         </div>
-
-
+        </div>
     </div>
-    <div class="col-sm-1>"></div>
-    <div class="input-group">
-        <select id="filter" name="Filter" class="sort-box">
-            <option value="noFilter">Search For...</option>
-            <option value="artistTerm">Artist</option>
-            <option value="albumTerm">Album</option>
-            <option value="songTerm">Song</option>
-        </select>
-        <select id="sort-choice" name="Sort" class="sort-box">
-            <option value="noFilter">Display Results in Order Of...</option>
-            <option value="artistName">Artist</option>
-            <option value="album">Album Name</option>
-            <option value="trackName">Song Name</option>
-            <option value="genre">Genre</option>
-        </select>
-    </div>
-</div>
-
-
-
-
-
-<div class="container" id="home-content">
-    <div class="col-sm-1>"></div>
-    <div class="col-sm-10">
-        <br><br>
-        <h3> looking for music tracks from the iTunes store? <br></h3>
-        <br>
-        <h4>start searching now.</h4>
-
-    </div>
-    <div class="col-sm-1>"></div>
-</div>
-<div id="itunes-results">
-</div>
-<h3 id="display-message" style="text-align: center"></h3>
-
-
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AppliedFor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.AppliedFor)
-                    @Html.ValidationMessageFor(model => model.AppliedFor, "", new { @class = "text-danger" })
+        <div class="container heading-box">
+            <div class="row" style="margin-top: 10vh">
+                <div class="col-sm-1>"></div>
+                <div class="input-group col-sm-10">
+                    <input type="text" class="form-control input-lg" placeholder="City, State" id="city-state-input" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button" onclick="keyWordSearch()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Favorite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Favorite)
-                    @Html.ValidationMessageFor(model => model.Favorite, "", new { @class = "text-danger" })
-                </div>
             </div>
-        </div>
+            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Posting_Link, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Posting_Link, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Posting_Link, "", new { @class = "text-danger" })
-            </div>
+        <div id="result">
         </div>
+        <button onclick="saveJob()"> Save Checked Jobs</button> 
+        <h3 id="display-message" style="text-align: center"></h3>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+      
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/pagination.js")
-    @Scripts.Render("~/search.js")
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/scripts/pagination.js"></script>
+<script type="text/javascript" src="~/scripts/search.js"></script>
 
-
-<script src="search.js"></script>
 }
