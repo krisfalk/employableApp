@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
+using GoogleMaps.LocationServices;
 
 namespace EmployableApp.Controllers
 {
@@ -18,6 +19,27 @@ namespace EmployableApp.Controllers
         public ActionResult Index()
         {
             return View(db.Addresses.ToList());
+        }
+        private ProgramAddress GetLatAndLng(Address address, string description)
+        {
+            //user.UserInfo = .Where(x => x.UserInfo_id == user.UserInfo_id).SingleOrDefault();
+
+            string houseNumber = address.HouseNumber;
+            string street = address.Street;
+            string city = address.City;
+            string state = address.State;
+            int zip = address.ZipCode;
+            string country = "United States";
+            string fullAddress = houseNumber.ToString() + " " + street + " " + city + ", " + country + " " + state + " " + zip;
+            ProgramAddress mapAddress = new ProgramAddress();
+            mapAddress.description = description;
+            var locationService = new GoogleLocationService();
+            var point = locationService.GetLatLongFromAddress(fullAddress);
+            mapAddress.lat = point.Latitude;
+            mapAddress.lng = point.Longitude;
+
+
+            return mapAddress;
         }
 
         // GET: Addresses/Details/5
