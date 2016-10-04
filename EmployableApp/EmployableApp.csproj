@@ -48,6 +48,10 @@
       <HintPath>..\packages\gmaps-api-net.0.13.30\lib\net\Google.Maps.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GoogleMaps.LocationServices, Version=0.1.5926.26040, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GoogleMaps.LocationServices.0.9.8.6\lib\net40\GoogleMaps.LocationServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -202,7 +206,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
-    <Compile Include="Controllers\GoogleLocationService.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

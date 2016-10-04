@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using EmployableApp.Models;
 using GoogleMaps.LocationServices;
 
+
 namespace EmployableApp.Controllers
 {
     public class AddressesController : Controller
@@ -22,8 +23,6 @@ namespace EmployableApp.Controllers
         }
         private ProgramAddress GetLatAndLng(Address address, string description)
         {
-            //user.UserInfo = .Where(x => x.UserInfo_id == user.UserInfo_id).SingleOrDefault();
-
             string houseNumber = address.HouseNumber;
             string street = address.Street;
             string city = address.City;
