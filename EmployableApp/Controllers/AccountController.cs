@@ -158,7 +158,8 @@ namespace EmployableApp.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     var address = new Address { HouseNumber = model.HouseNumber, AptNumber = model.AptNumber, City = model.City, State = model.State, Street = model.Street, ZipCode = model.Zip };
-                    db.Address.Add(address);
+                    db.Addresses.Add(address);
+                    db.SaveChanges();
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

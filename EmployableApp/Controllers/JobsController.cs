@@ -17,7 +17,7 @@ namespace EmployableApp.Controllers
         // GET: Jobs
         public ActionResult Index()
         {
-            var job = db.Job.Include(j => j.ApplicationUser);
+            var job = db.Jobs.Include(j => j.ApplicationUser);
             return View(job.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace EmployableApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Job.Find(id);
+            Job job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace EmployableApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Job.Add(job);
+                db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -75,7 +75,7 @@ namespace EmployableApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Job.Add(job);
+                db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -91,7 +91,7 @@ namespace EmployableApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Job.Find(id);
+            Job job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -124,7 +124,7 @@ namespace EmployableApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Job job = db.Job.Find(id);
+            Job job = db.Jobs.Find(id);
             if (job == null)
             {
                 return HttpNotFound();
@@ -137,8 +137,8 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Job job = db.Job.Find(id);
-            db.Job.Remove(job);
+            Job job = db.Jobs.Find(id);
+            db.Jobs.Remove(job);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -41,10 +41,10 @@ namespace EmployableApp.Models
 
 
         }
-        public DbSet<Job> Job { get; set; }
-        public DbSet<Resume> Resume { get; set; }
-        public DbSet<Address> Address { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
-        public System.Data.Entity.DbSet<EmployableApp.Models.Address> Addresses { get; set; }
+       
     }
 }

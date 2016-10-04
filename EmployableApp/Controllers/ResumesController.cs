@@ -17,7 +17,7 @@ namespace EmployableApp.Controllers
         // GET: Resumes
         public ActionResult Index()
         {
-            var resume = db.Resume.Include(r => r.ApplicationUser);
+            var resume = db.Resumes.Include(r => r.ApplicationUser);
             return View(resume.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace EmployableApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resume resume = db.Resume.Find(id);
+            Resume resume = db.Resumes.Find(id);
             if (resume == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace EmployableApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Resume.Add(resume);
+                db.Resumes.Add(resume);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -68,7 +68,7 @@ namespace EmployableApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resume resume = db.Resume.Find(id);
+            Resume resume = db.Resumes.Find(id);
             if (resume == null)
             {
                 return HttpNotFound();
@@ -101,7 +101,7 @@ namespace EmployableApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resume resume = db.Resume.Find(id);
+            Resume resume = db.Resumes.Find(id);
             if (resume == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Resume resume = db.Resume.Find(id);
-            db.Resume.Remove(resume);
+            Resume resume = db.Resumes.Find(id);
+            db.Resumes.Remove(resume);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
