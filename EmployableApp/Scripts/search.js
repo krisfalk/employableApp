@@ -79,7 +79,7 @@ function displayResultsInHtml(readyResults){
 
     function getDisplayForTrack(individual) {
       
-      htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox"/>';
+      htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual);
       htmlToAdd += '<a href="urlLink" target="_blank">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
     }
 
@@ -106,10 +106,33 @@ function sortBySortInput(readyResults, typeChoice)
     return 0;
   }
 }
+function Job(JobTitle, Link) {
+    this.title = JobTitle;
+    this.link = Link;
+}
+function getCheckedBoxes(checkbox) {
+    var checkBoxes = $("#result div input");
+    var isChecked = checkBoxes.map((x) => { return checkBoxes[x].checked });
+    var links = $("#result div a");
 
+    var jobs = links.map((x) => { return { 'Job' : new Job(links[x].text, links[x].href) }});
+    var checkedJobs = [];
+    for (var i = 0; i < isChecked.length; i++) {
+        if (isChecked[i]) {
+            checkedJobs.push(jobs[i])
+        }
+    }
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:44172/Jobs/SaveJobs",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(checkedJobs)
+    });
+}
 
 function saveJob() {
-    if ($('#isSaved').val() == true) {
-
-    }
+    var checkedBoxes = getCheckedBoxes("checkbox");
+    document.getElementById("save").style.display = "none";
+    document.getElementById("submit").style.display = "block";
 }
