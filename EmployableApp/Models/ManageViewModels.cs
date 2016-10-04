@@ -13,6 +13,8 @@ namespace EmployableApp.Models
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
         public ApplicationUser currentUser { get; set; }
+        public ProgramAddress UserLocation { get; set; }
+        public ProgramAddress BusinessLocation { get; set; }
     }
 
     public class ManageLoginsViewModel

@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
 using GoogleMaps.LocationServices;
-
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
 
 namespace EmployableApp.Controllers
 {
@@ -19,7 +20,14 @@ namespace EmployableApp.Controllers
         // GET: Addresses
         public ActionResult Index()
         {
-            return View(db.Addresses.ToList());
+            ApplicationUser currentWorker = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+            var model = new IndexViewModel
+            {
+                
+
+            };
+            return View(model);
         }
         private ProgramAddress GetLatAndLng(Address address, string description)
         {
