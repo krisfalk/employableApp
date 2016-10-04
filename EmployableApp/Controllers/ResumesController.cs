@@ -39,7 +39,7 @@ namespace EmployableApp.Controllers
         // GET: Resumes/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace EmployableApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -73,7 +73,7 @@ namespace EmployableApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -90,7 +90,7 @@ namespace EmployableApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
