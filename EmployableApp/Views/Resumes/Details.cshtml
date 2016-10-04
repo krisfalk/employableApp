@@ -1,0 +1,58 @@
+﻿@model EmployableApp.Models.Resume
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Resume</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.References)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.References)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResumeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
