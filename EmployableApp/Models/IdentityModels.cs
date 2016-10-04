@@ -45,5 +45,6 @@ namespace EmployableApp.Models
         public DbSet<Resume> Resume { get; set; }
         public DbSet<Address> Address { get; set; }
 
+        public System.Data.Entity.DbSet<EmployableApp.Models.Address> Addresses { get; set; }
     }
 }

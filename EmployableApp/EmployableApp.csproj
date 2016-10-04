@@ -196,22 +196,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ResumesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610041409408_init.cs" />
-    <Compile Include="Migrations\201610041409408_init.Designer.cs">
-      <DependentUpon>201610041409408_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610041415592_initial.cs" />
-    <Compile Include="Migrations\201610041415592_initial.Designer.cs">
-      <DependentUpon>201610041415592_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610041422087_initial1.cs" />
-    <Compile Include="Migrations\201610041422087_initial1.Designer.cs">
-      <DependentUpon>201610041422087_initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201610041427309_initial.cs" />
+    <Compile Include="Migrations\201610041427309_initial.Designer.cs">
+      <DependentUpon>201610041427309_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201610041501459_updated address database values.cs" />
     <Compile Include="Migrations\201610041501459_updated address database values.Designer.cs">
@@ -250,8 +245,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pagination.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\search.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -287,6 +284,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="Views\Resumes\Create.cshtml" />
+    <Content Include="Views\Resumes\Delete.cshtml" />
+    <Content Include="Views\Resumes\Details.cshtml" />
+    <Content Include="Views\Resumes\Edit.cshtml" />
+    <Content Include="Views\Resumes\Index.cshtml" />
+    <Content Include="Views\Addresses\Create.cshtml" />
+    <Content Include="Views\Addresses\Delete.cshtml" />
+    <Content Include="Views\Addresses\Details.cshtml" />
+    <Content Include="Views\Addresses\Edit.cshtml" />
+    <Content Include="Views\Addresses\Index.cshtml" />
+    <Content Include="Views\Jobs\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,14 +313,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610041409408_init.resx">
-      <DependentUpon>201610041409408_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610041415592_initial.resx">
-      <DependentUpon>201610041415592_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610041422087_initial1.resx">
-      <DependentUpon>201610041422087_initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610041427309_initial.resx">
+      <DependentUpon>201610041427309_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610041501459_updated address database values.resx">
       <DependentUpon>201610041501459_updated address database values.cs</DependentUpon>
