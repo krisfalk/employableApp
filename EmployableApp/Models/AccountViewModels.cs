@@ -65,6 +65,46 @@ namespace EmployableApp.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Zip")]
+        [DataType(DataType.Text)]
+        public int Zip { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        [DataType(DataType.Text)]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        [DataType(DataType.Text)]
+        public string City { get; set; }
+
+        [Required]
+        [Display(Name = "Street")]
+        [DataType(DataType.Text)]
+        public string Street { get; set; }
+
+        [Required]
+        [Display(Name = "Appartment Number")]
+        [DataType(DataType.Text)]
+        public string AptNumber { get; set; }
+
+        [Required]
+        [Display(Name = "House Number")]
+        [DataType(DataType.Text)]
+        public string HouseNumber { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        [DataType(DataType.Text)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        [DataType(DataType.Text)]
+        public string LastName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

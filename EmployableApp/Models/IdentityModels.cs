@@ -43,6 +43,7 @@ namespace EmployableApp.Models
         }
         public DbSet<Job> Job { get; set; }
         public DbSet<Resume> Resume { get; set; }
+        public DbSet<Address> Address { get; set; }
 
     }
 }
