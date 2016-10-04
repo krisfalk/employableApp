@@ -38,6 +38,11 @@ namespace EmployableApp.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+
+
         }
+        public DbSet<Job> Job { get; set; }
+        public DbSet<Resume> Resume { get; set; }
+
     }
 }
