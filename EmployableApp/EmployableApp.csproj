@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201610041427309_initial.Designer.cs">
       <DependentUpon>201610041427309_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610041501459_updated address database values.cs" />
+    <Compile Include="Migrations\201610041501459_updated address database values.Designer.cs">
+      <DependentUpon>201610041501459_updated address database values.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -311,6 +315,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610041427309_initial.resx">
       <DependentUpon>201610041427309_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610041501459_updated address database values.resx">
+      <DependentUpon>201610041501459_updated address database values.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
