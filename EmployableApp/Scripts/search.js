@@ -2,40 +2,28 @@
 
 
 
-function search() {
-  if($('#search-input').val()!= ""){
-  var encodedParameters = handleParameters();
-  var url = 'https://itunes.apple.com/search?' + encodedParameters;
-  $('head').append('<script src="' + url + '"></script>');
-}
+function keyWordSearch(){
+    var encodedParameters;
+
+    if ($('#search-input').val() != "") {
+        encodedParameters = handleParameters();
+    }
+    var url= "http://api.indeed.com/ads/apisearch?publisher=6943012943597582&format=json&" + encodedParameters + "&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
+    $('head').append('<script src="' + url + '"></script>');
 
 }
-
 
 function handleParameters(){
     var searchInput = $('#search-input').val();
-    var filterInput = $('#filter').val();
-    var parameters;
+    var filterInput = $('#city-state-input').val();
 
-    if(filterInput != "noFilter"){
-    parameters = {
-        term: searchInput,
-        country: 'US',
-        media: 'music',
-        entity: 'musicTrack',
-        attribute: filterInput,
+    var parameters = {
+        q: searchInput,
+        l: filterInput,
         callback: 'handleReturnResults'
     }
-  }
-  else {
-  parameters = {
-      term: searchInput,
-      country: 'US',
-      media: 'music',
-      entity: 'musicTrack',
-      callback: 'handleReturnResults'
-  }
-  }
+
+//can do a bunch of ifs for different filter input
 
   parameters = encode(parameters);
   return parameters;
@@ -64,29 +52,15 @@ function handleReturnResults(totalResults) {
   for (var i = 0; i < rawResults.length; i++) {
     var currentItem = rawResults[i];
     var individualResult = {
-      trackName: currentItem.trackCensoredName,
-      trackUrl: currentItem.trackViewUrl,
-      artistName: currentItem.artistName,
-      artistUrl: currentItem.artistViewUrl,
-      genre: currentItem.primaryGenreName,
-      preview: currentItem.previewUrl,
-      artwork: currentItem.artworkUrl60,
-      albumName: currentItem.collectionName,
-      albumUrl: currentItem.collectionViewUrl,
-      albumPrice: currentItem.collectionPrice,
-      trackPrice: currentItem.trackPrice,
-      releaseDate: new Date(Date.parse(currentItem.releaseDate)).toDateString()
+        jobTitle: currentItem.jobtitle,
+        url: currentItem.url
     };
     readyResults[i] = individualResult;
 
-
   }
 
-    var typeChoice = $('#sort-choice').val();
-    readyResults = sortBySortInput(readyResults, typeChoice);
+  if (readyResults.length != 0) {
 
-    document.getElementById("home-content").style.display = "none";
-      if (readyResults.length != 0){
       displayResultsInHtml(readyResults);
       $('#myTableBody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
     }
@@ -101,33 +75,18 @@ function handleReturnResults(totalResults) {
 
 function displayResultsInHtml(readyResults){
     var htmlToAdd = "";
-
     readyResults = readyResults.forEach(getDisplayForTrack);
 
-
-
-    function getDisplayForTrack(individual){
-      htmlToAdd += '<tr>';
-      htmlToAdd += '<td><img src=artwork>'.replace("artwork", individual.artwork)+'</td>';
-      htmlToAdd += '<td>Track:&nbsp;&nbsp;<a href="trackUrl" target="_blank">'.replace("trackUrl", individual.trackUrl) + 'track'.replace("track", individual.trackName) + '</a><br>Price: $price&nbsp;&nbsp;'.replace("price", individual.trackPrice) + '</td>';
-      htmlToAdd += '<td>Artist:&nbsp;&nbsp;<a href="artistUrl" target="_blank">'.replace("artistUrl", individual.artistUrl) + 'artist'.replace("artist", individual.artistName) + '</a></td>';
-      htmlToAdd += '<td>Album Name:&nbsp;&nbsp;<a href="albumUrl" target="_blank">'.replace("albumUrl", individual.albumUrl) + 'album'.replace("album", individual.albumName) + '</a><br>Album Released:&nbsp;&nbsp; date'.replace("date", individual.releaseDate) + '<br>Genre:&nbsp;&nbsp; genre'.replace("genre", individual.genre) + '</td>';
-      htmlToAdd += '<td><audio controls src="previewUrl" preload="none"></audio></td>'.replace("previewUrl", individual.preview);
-      htmlToAdd += '</tr>';
+    function getDisplayForTrack(individual) {
+      
+      htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox"/>';
+      htmlToAdd += '<a href="urlLink" target="_blank">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
     }
 
-
-
-      var opening = '<div class="container"><table class="table" id="myTable"><thead><tr>';
-      var headers = '<th></th><th>Track</th><th>Artist</th><th>Album</th><th>Preview</th></tr></thead>';
-      var body = '<tbody id="myTableBody"> ' + htmlToAdd;
-      var ending = '</tbody></table><div class="row"><div class="col-md-12 text-center"><ul class="pagination pagination-xs pager" id="myPager"></ul></div></div></div>';
-      var finalHtml = opening + headers + body + ending;
-
-    $('#itunes-results').html(finalHtml);
-
+    $('#result').html(htmlToAdd);
 
 }
+
 
 function sortBySortInput(readyResults, typeChoice)
 {
@@ -148,6 +107,9 @@ function sortBySortInput(readyResults, typeChoice)
   }
 }
 
-function sortByFilter(readyResults, filter){
 
+function saveJob() {
+    if ($('#isSaved').val() == true) {
+
+    }
 }
