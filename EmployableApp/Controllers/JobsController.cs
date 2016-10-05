@@ -20,6 +20,7 @@ namespace EmployableApp.Controllers
             var job = db.Jobs.Include(j => j.ApplicationUser);
             return View(job.ToList());
         }
+   
 
         // GET: Jobs/Details/5
         public ActionResult Details(int? id)
@@ -44,19 +45,24 @@ namespace EmployableApp.Controllers
         // POST: Jobs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Search([Bind(Include = "JobId,UserId,Title,CompanyName,AppliedFor,Favorite,Posting_Link,Latitude,Longitude")] Job job)
+        [Serializable]
+        public class test
         {
-            if (ModelState.IsValid)
+            public object Job;
+            public test()
             {
-                db.Jobs.Add(job);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+         
             }
+        }
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Search(object[] savedJobs, Job job)
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", job.UserId);
-            return View(job);
+
+        public ActionResult SaveJobs(List<test> thing)
+        {
+            Console.WriteLine(thing);
+            return View();
         }
 
         // GET: Jobs/Create

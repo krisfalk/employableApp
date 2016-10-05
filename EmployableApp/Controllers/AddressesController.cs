@@ -20,12 +20,16 @@ namespace EmployableApp.Controllers
         // GET: Addresses
         public ActionResult Index()
         {
-            ApplicationUser currentWorker = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            ApplicationUser currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            ProgramAddress userLoc = new ProgramAddress();
+            ProgramAddress businessLoc = new ProgramAddress();
+
+            userLoc = GetLatAndLng(currentUser.Address, "You Are Here!");
 
             var model = new IndexViewModel
             {
-                
-
+                UserLocation = userLoc,
+                BusinessLocation = businessLoc
             };
             return View(model);
         }

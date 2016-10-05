@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmployableApp.Models.Address>
+﻿@model EmployableApp.Models.IndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -24,21 +24,14 @@
                 center: {lat: 43.137174, lng: -88.092327},
                 zoom: 9
             });
-            @foreach (var item in Model.programmed) {
-       <text>
             var marker = new google.maps.Marker({
-                position: { lat: @item.lat , lng: @item.lng},
+                position: { lat: @Model.UserLocation.lat , lng: @Model.UserLocation.lng},
                 map: map,
                 title: 'Hello'
-            });</text> }
+            });
             var lineCoordinates = [];
-            @foreach(var item in Model.programmed)
-             {
-                <text>
-
-            coordinates_array = new google.maps.LatLng(@item.lat, @item.lng);
+            coordinates_array = new google.maps.LatLng(@Model.BusinessLocation.lat, @Model.BusinessLocation.lng);
             lineCoordinates.push(coordinates_array);
-            </text>
              };
 
             var path = new google.maps.MVCArray();
@@ -70,60 +63,3 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3KoWWl0oYiaKZJBpRBR2lg8_LNH5FuNw&callback=initMap">
     </script>
 
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.HouseNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AptNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Street)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ZipCode)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HouseNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AptNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Street)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.State)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ZipCode)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Address_id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Address_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Address_id })
-                </td>
-            </tr>
-        }
-
-    </table>
