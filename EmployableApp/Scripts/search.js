@@ -136,12 +136,29 @@ function getCheckedBoxes(checkbox) {
         data: JSON.stringify(checkedJobs)
     });
 }
+
 function goToCity(longitude, latitude) {
+        var coordinates = latitude + "," + longitude;
+        var currentUrl = 'https://api.teleport.org/api/locations/' + coordinates + '/?embed=location%3Anearest-cities%2Flocation%3Anearest-city';
+        var cityName = "";
+        var cityPopulation = "";
+        var cityDescription = "";
 
+        $.ajax
+        ({
+            type: "GET",
+            url: teleportUrl,
+            //dataType: "json",
+            success: function (response) {
+                cityName = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name;
+                cityPopulation = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population;
+                }
+            }
+        );
 
-
-
+        currentUrl = "";
 }
+
 function saveJob() {
     var checkedBoxes = getCheckedBoxes("checkbox");
 }
