@@ -17,8 +17,8 @@ namespace EmployableApp.Controllers
         // GET: Resumes
         public ActionResult Index()
         {
-            var resume = db.Resumes.Include(r => r.ApplicationUser);
-            return View(resume.ToList());
+            var resumes = db.Resumes.Include(r => r.ApplicationUser);
+            return View(resumes.ToList());
         }
 
         // GET: Resumes/Details/5
@@ -39,7 +39,7 @@ namespace EmployableApp.Controllers
         // GET: Resumes/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace EmployableApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ResumeId,UserId,Experience,Education,Skills,References")] Resume resume)
+        public ActionResult Create([Bind(Include = "ResumeId,UserId,JobExperienceOne,JobExperienceTwo,JobExperienceThree,HighSchool,College,OtherSchooling,Skills,ReferenceOne,ReferenceTwo,ReferenceThree")] Resume resume)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace EmployableApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -73,7 +73,7 @@ namespace EmployableApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -82,7 +82,7 @@ namespace EmployableApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ResumeId,UserId,Experience,Education,Skills,References")] Resume resume)
+        public ActionResult Edit([Bind(Include = "ResumeId,UserId,JobExperienceOne,JobExperienceTwo,JobExperienceThree,HighSchool,College,OtherSchooling,Skills,ReferenceOne,ReferenceTwo,ReferenceThree")] Resume resume)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace EmployableApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 

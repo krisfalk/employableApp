@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201610051437355_added posting date to job model.Designer.cs">
       <DependentUpon>201610051437355_added posting date to job model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610052029450_update to resume table.cs" />
+    <Compile Include="Migrations\201610052029450_update to resume table.Designer.cs">
+      <DependentUpon>201610052029450_update to resume table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -310,11 +314,6 @@
     <Content Include="Views\Jobs\Details.cshtml" />
     <Content Include="Views\Jobs\Edit.cshtml" />
     <Content Include="Views\Jobs\Index.cshtml" />
-    <Content Include="Views\Resumes\Create.cshtml" />
-    <Content Include="Views\Resumes\Delete.cshtml" />
-    <Content Include="Views\Resumes\Details.cshtml" />
-    <Content Include="Views\Resumes\Edit.cshtml" />
-    <Content Include="Views\Resumes\Index.cshtml" />
     <Content Include="Views\Addresses\Create.cshtml" />
     <Content Include="Views\Addresses\Delete.cshtml" />
     <Content Include="Views\Addresses\Details.cshtml" />
@@ -322,6 +321,11 @@
     <Content Include="Views\Addresses\Index.cshtml" />
     <Content Include="Views\Jobs\Search.cshtml" />
     <Content Include="Views\Jobs\DisplayCity.cshtml" />
+    <Content Include="Views\Resumes\Create.cshtml" />
+    <Content Include="Views\Resumes\Delete.cshtml" />
+    <Content Include="Views\Resumes\Details.cshtml" />
+    <Content Include="Views\Resumes\Edit.cshtml" />
+    <Content Include="Views\Resumes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -343,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610051437355_added posting date to job model.resx">
       <DependentUpon>201610051437355_added posting date to job model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610052029450_update to resume table.resx">
+      <DependentUpon>201610052029450_update to resume table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

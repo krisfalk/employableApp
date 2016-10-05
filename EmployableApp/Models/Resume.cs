@@ -14,9 +14,19 @@ namespace EmployableApp.Models
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        public string Experience { get; set; }
-        public string Education { get; set; }
+        public string JobExperienceOne { get; set; }
+
+        public string JobExperienceTwo { get; set; }
+
+        public string JobExperienceThree { get; set; }
+        public string HighSchool { get; set; }
+        public string College { get; set; }
+        public string OtherSchooling { get; set; }
         public string Skills { get; set; }
-        public string References { get; set; }
+        public string ReferenceOne { get; set; }
+        public string ReferenceTwo { get; set; }
+        public string ReferenceThree { get; set; }
+
+
     }
 }

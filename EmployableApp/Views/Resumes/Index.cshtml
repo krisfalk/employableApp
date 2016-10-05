@@ -15,16 +15,34 @@
             @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Experience)
+            @Html.DisplayNameFor(model => model.JobExperienceOne)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Education)
+            @Html.DisplayNameFor(model => model.JobExperienceTwo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobExperienceThree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HighSchool)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.College)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherSchooling)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Skills)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.References)
+            @Html.DisplayNameFor(model => model.ReferenceOne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceTwo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceThree)
         </th>
         <th></th>
     </tr>
@@ -35,16 +53,34 @@
             @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Experience)
+            @Html.DisplayFor(modelItem => item.JobExperienceOne)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Education)
+            @Html.DisplayFor(modelItem => item.JobExperienceTwo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobExperienceThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HighSchool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.College)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherSchooling)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Skills)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.References)
+            @Html.DisplayFor(modelItem => item.ReferenceOne)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceTwo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceThree)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ResumeId }) |
