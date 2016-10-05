@@ -45,6 +45,8 @@ namespace EmployableApp.Models
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
-       
+        public DbSet<Event> Events { get; set; }
+
+        //public System.Data.Entity.DbSet<EmployableApp.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
