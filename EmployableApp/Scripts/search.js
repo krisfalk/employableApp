@@ -52,8 +52,14 @@ function handleReturnResults(totalResults) {
   for (var i = 0; i < rawResults.length; i++) {
     var currentItem = rawResults[i];
     var individualResult = {
-        jobTitle: currentItem.jobtitle,
-        url: currentItem.url
+        jobTitle : currentItem.jobtitle,
+        url : currentItem.url,
+        company : currentItem.company,
+        latitude : currentItem.latitude,
+        longitude : currentItem.longitude,
+        postDate : currentItem.date,
+        city : currentItem.city,
+        state : currentItem.state
     };
     readyResults[i] = individualResult;
 
@@ -79,8 +85,10 @@ function displayResultsInHtml(readyResults){
 
     function getDisplayForTrack(individual) {
       
-      htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual);
-      htmlToAdd += '<a href="urlLink" target="_blank">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
+        htmlToAdd += '<a href="urlLink" target="_blank">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        htmlToAdd += '<div id="city"><a href="urlCity" onclick="goToCity({0},{1})">'.replace("urlCity", 'http://localhost:44172/Jobs/DisplayCity').replace("{0}", individual.city).replace("{1}", individual.state) + 'title'.replace("title", individual.city) + '</a></div>';
+
     }
 
     $('#result').html(htmlToAdd);
@@ -106,16 +114,14 @@ function sortBySortInput(readyResults, typeChoice)
     return 0;
   }
 }
-function Job(JobTitle, Link) {
-    this.title = JobTitle;
-    this.link = Link;
-}
+
 function getCheckedBoxes(checkbox) {
+ 
     var checkBoxes = $("#result div input");
     var isChecked = checkBoxes.map((x) => { return checkBoxes[x].checked });
     var links = $("#result div a");
 
-    var jobs = links.map((x) => { return { 'Job' : new Job(links[x].text, links[x].href) }});
+    var jobs = links.map((x) => { return { 'JobTitle': links[x].text, 'Link': links[x].href, 'Information' : checkBoxes[x].defaultValue }});
     var checkedJobs = [];
     for (var i = 0; i < isChecked.length; i++) {
         if (isChecked[i]) {
@@ -130,7 +136,12 @@ function getCheckedBoxes(checkbox) {
         data: JSON.stringify(checkedJobs)
     });
 }
+function goToCity(cityName, stateName) {
 
+
+
+
+}
 function saveJob() {
     var checkedBoxes = getCheckedBoxes("checkbox");
     document.getElementById("save").style.display = "none";

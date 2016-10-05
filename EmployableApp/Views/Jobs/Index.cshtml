@@ -6,34 +6,24 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CompanyName)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Posting_Link)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.AppliedFor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Favorite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Posting_Link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
         </th>
         <th></th>
     </tr>
@@ -41,28 +31,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CompanyName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AppliedFor)
+            @Html.DisplayFor(modelItem => item.Posting_Link)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Favorite)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Posting_Link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
+            @Html.DisplayFor(modelItem => item.AppliedFor)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.JobId }) |

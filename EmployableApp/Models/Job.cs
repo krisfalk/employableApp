@@ -21,5 +21,6 @@ namespace EmployableApp.Models
         public string Posting_Link { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public DateTime PostingDate { get; set; }
     }
 }

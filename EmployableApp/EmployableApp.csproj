@@ -217,6 +217,14 @@
     <Compile Include="Migrations\201610041516210_changing datatypes for variables.Designer.cs">
       <DependentUpon>201610041516210_changing datatypes for variables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610051229216_day3.cs" />
+    <Compile Include="Migrations\201610051229216_day3.Designer.cs">
+      <DependentUpon>201610051229216_day3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610051437355_added posting date to job model.cs" />
+    <Compile Include="Migrations\201610051437355_added posting date to job model.Designer.cs">
+      <DependentUpon>201610051437355_added posting date to job model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -227,6 +235,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProgramAddress.cs" />
     <Compile Include="Models\Resume.cs" />
+    <Compile Include="Models\StringToDateConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -312,6 +321,7 @@
     <Content Include="Views\Addresses\Edit.cshtml" />
     <Content Include="Views\Addresses\Index.cshtml" />
     <Content Include="Views\Jobs\Search.cshtml" />
+    <Content Include="Views\Jobs\DisplayCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,6 +337,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610041516210_changing datatypes for variables.resx">
       <DependentUpon>201610041516210_changing datatypes for variables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610051229216_day3.resx">
+      <DependentUpon>201610051229216_day3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610051437355_added posting date to job model.resx">
+      <DependentUpon>201610051437355_added posting date to job model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

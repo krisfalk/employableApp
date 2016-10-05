@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace EmployableApp.Controllers
 {
@@ -36,6 +37,8 @@ namespace EmployableApp.Controllers
             }
             return View(job);
         }
+
+
         public ActionResult Search()
         {
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
@@ -46,22 +49,32 @@ namespace EmployableApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Serializable]
-        public class test
+        public class JobListing
         {
-            public object Job;
-            public test()
-            {
-         
-            }
+            public string JobTitle { get; set; }
+            public string Link { get; set; }
+
+            public string Information { get; set; }
+  
         }
+
+
+
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Search(object[] savedJobs, Job job)
-
-
-        public ActionResult SaveJobs(List<test> thing)
+        public ActionResult SaveJobs(List<JobListing> savedJobs)
         {
-            Console.WriteLine(thing);
+            var userId = User.Identity.GetUserId();
+            StringToDateConverter converter = new StringToDateConverter();
+            foreach (JobListing job in savedJobs)
+            {
+
+                string[] data = job.Information.Split(',');
+                DateTime date = converter.convertToDateTime(data[4]);
+
+                var newJob = new Job { UserId = userId, Title = job.JobTitle, Posting_Link = job.Link, Latitude = Convert.ToDouble(data[0]), Longitude = Convert.ToDouble(data[1]), CompanyName = data[2], PostingDate = date };
+                db.Jobs.Add(newJob);
+            }
+            db.SaveChanges();
             return View();
         }
 
@@ -89,6 +102,17 @@ namespace EmployableApp.Controllers
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", job.UserId);
             return View(job);
         }
+
+        public ActionResult DisplayCity()
+        {
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
+            return View();
+
+        }
+
+        // POST: Jobs/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
         // GET: Jobs/Edit/5
         public ActionResult Edit(int? id)
@@ -157,5 +181,7 @@ namespace EmployableApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }
