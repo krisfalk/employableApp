@@ -84,8 +84,8 @@ namespace EmployableApp.Models
         [DataType(DataType.Text)]
         public string Street { get; set; }
 
-        [Required]
-        [Display(Name = "Appartment Number")]
+        
+        [Display(Name = "Apartment Number")]
         [DataType(DataType.Text)]
         public string AptNumber { get; set; }
 
