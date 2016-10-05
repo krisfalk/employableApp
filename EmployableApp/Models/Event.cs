@@ -20,6 +20,6 @@ namespace EmployableApp.Models
 
         public string Title { get; set; }
 
-        public Boolean Editable { get; set; }
+        public bool Editable { get; set; }
     }
 }

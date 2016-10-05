@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EmployableApp.Models;
 
+
 namespace EmployableApp.Controllers
 {
     [Authorize]
@@ -152,7 +153,7 @@ namespace EmployableApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = (model.FirstName + " " + model.LastName), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, AccountCreation = DateTime.Now };
+                var user = new ApplicationUser { UserName = (model.FirstName + " " + model.LastName), Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, AccountCreation = DateTime.Now, LastSearch = DateTime.Now };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
