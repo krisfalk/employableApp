@@ -53,11 +53,9 @@ namespace EmployableApp.Controllers
         {
             public string JobTitle { get; set; }
             public string Link { get; set; }
-
             public string Information { get; set; }
   
         }
-
 
 
         [HttpPost]
@@ -69,9 +67,9 @@ namespace EmployableApp.Controllers
             {
 
                 string[] data = job.Information.Split(',');
-                DateTime date = converter.convertToDateTime(data[4]);
+                DateTime dateTime = DateTime.Parse(data[4]);
 
-                var newJob = new Job { UserId = userId, Title = job.JobTitle, Posting_Link = job.Link, Latitude = Convert.ToDouble(data[0]), Longitude = Convert.ToDouble(data[1]), CompanyName = data[2], PostingDate = date };
+                var newJob = new Job { UserId = userId, Title = job.JobTitle, Posting_Link = job.Link, Latitude = Convert.ToDouble(data[0]), Longitude = Convert.ToDouble(data[1]), CompanyName = data[2], PostingDate = dateTime };
                 db.Jobs.Add(newJob);
             }
             db.SaveChanges();

@@ -86,8 +86,8 @@ function displayResultsInHtml(readyResults){
     function getDisplayForTrack(individual) {
       
         htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
-        htmlToAdd += '<a href="urlLink" target="_blank">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
-        htmlToAdd += '<div id="city"><a href="urlCity" onclick="goToCity({0},{1})">'.replace("urlCity", 'http://localhost:44172/Jobs/DisplayCity').replace("{0}", individual.city).replace("{1}", individual.state) + 'title'.replace("title", individual.city) + '</a></div>';
+        htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        htmlToAdd += '<div id="city"><a href="urlCity" onclick="goToCity({0}, {1})" id="secondA">'.replace("urlCity", 'http://localhost:44172/Jobs/DisplayCity').replace("{0}", individual.longitude).replace("{1}", individual.latitude) + 'title'.replace("title", individual.city) + '</a></div>';
 
     }
 
@@ -119,7 +119,7 @@ function getCheckedBoxes(checkbox) {
  
     var checkBoxes = $("#result div input");
     var isChecked = checkBoxes.map((x) => { return checkBoxes[x].checked });
-    var links = $("#result div a");
+    var links = $("[id=firstA]");
 
     var jobs = links.map((x) => { return { 'JobTitle': links[x].text, 'Link': links[x].href, 'Information' : checkBoxes[x].defaultValue }});
     var checkedJobs = [];
@@ -136,7 +136,7 @@ function getCheckedBoxes(checkbox) {
         data: JSON.stringify(checkedJobs)
     });
 }
-function goToCity(cityName, stateName) {
+function goToCity(longitude, latitude) {
 
 
 
@@ -144,6 +144,4 @@ function goToCity(cityName, stateName) {
 }
 function saveJob() {
     var checkedBoxes = getCheckedBoxes("checkbox");
-    document.getElementById("save").style.display = "none";
-    document.getElementById("submit").style.display = "block";
 }
