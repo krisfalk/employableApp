@@ -1,4 +1,4 @@
-﻿@model EmployableApp.Models.Job
+﻿@model EmployableApp.Models.IndexViewModel
 
 @{
     ViewBag.Title = "DisplayCity";
@@ -7,4 +7,23 @@
 <h2>DisplayCity</h2>
 
 
+   
 
+    @*<div id="cityName"></div>*@
+
+
+    @*onload="goToCity(@Model.Latitude, @Model.Longitude)"*@
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@*@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/pagination.js"></script>
+    <script type="text/javascript" src="~/scripts/search.js"></script>
+
+}*@

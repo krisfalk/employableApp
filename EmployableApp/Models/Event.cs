@@ -10,16 +10,19 @@ namespace EmployableApp.Models
     public class Event
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-        public string StartDate { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
 
-        public string Title { get; set; }
+        public Boolean allDay { get; set; }
 
-        public bool Editable { get; set; }
+        public string title { get; set; }
+
+        public Boolean editable { get; set; }
     }
 }

@@ -5,10 +5,11 @@ using System.Web;
 
 namespace EmployableApp.Models
 {
-    public class JobViewModel
+    public class CityViewModel
     {
-   // public Dictionary<int  savedJobs { get; set; }
-
+        public string Latitude{ get; set; }
+        public string Longitude { get; set; }
+        public string CityName { get; set; }
 
     }
 }

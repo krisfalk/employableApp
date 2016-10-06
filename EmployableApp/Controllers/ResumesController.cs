@@ -129,7 +129,7 @@ namespace EmployableApp.Controllers
             {
                 Latitude = lat,
                 Longitude = lng,
-                City = city
+                CityName = city
             };
             return View(model);
         }
