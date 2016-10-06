@@ -89,10 +89,11 @@
             allDay: false,
             displayEventTime: true,
             defaultTimedEventDuration: '01:00:00',
-            slotDuration: '00:60:00',
+            forceEventDuration: true,
+            slotDuration: '00:30:00',
             events: 'GetCalendarEvents',
 
-            eventDrop: function(event,revertFunc) {
+            eventDrop: function(event) {
                 if (confirm("Do you want to save this event?")) {
                     //save changes to event in database****
                     EditEvent(event);
@@ -103,7 +104,7 @@
                 var description = prompt('Enter a description:');
                 if (description) {
                     var data = {title: description, start: date, end: date, editable: true, allDay: false, }
-                    $('#calendar').fullCalendar('renderEvent', { title: description, start: date, }, true);
+                    $('#calendar').fullCalendar('renderEvent', { title: description, start: date, end: date}, true);
                     CreateEvent(data);
                 }
             },
@@ -124,7 +125,7 @@
                 // }
             },
             eventConstraint: {
-                start: moment().subtract(1, 'week').format('MM-DD-YYYY hh:mm:ss'),
+                start: moment().subtract(1, 'week').format('MM-DD-YYYY hh:mm:ss A'),
                 end: '2050-05-05'
             },
 
@@ -138,7 +139,7 @@
 
     });
 
-    function EditEvent(drag, event, dayDelta, minuteDelta, allDay, revertFunc) {
+    function EditEvent(data) {
 
         $.ajax({
             url: 'Edit/',
@@ -146,12 +147,12 @@
             dataType: "json",
             data: ({
                 __RequestVerificationToken: $('[name= "__RequestVerificationToken"]').val(),
-                Id: drag.Id,
-                title: drag.title,
-                start: drag._start.format('MM-DD-YYYY hh:mm:ss'),
-                end: drag._end.format('MM-DD-YYYY hh:mm:ss'),
-                allday: drag.allDay,
-                editable: drag.editable
+                Id: data.Id,
+                title: data.title,
+                start: data.start.format('MM-DD-YYYY hh:mm:ss A'),
+                end: data.end.format('MM-DD-YYYY hh:mm:ss A'),
+                allday: data.allDay,
+                editable: data.editable
             }),
             success: function (data, textStatus) {
                 if (!data) {
@@ -196,8 +197,8 @@
             data: ({
                 __RequestVerificationToken: $('[name= "__RequestVerificationToken"]').val(),
                 title: event.title,
-                start: event.start.format('MM-DD-YYYY hh:mm:ss'),
-                end: event.end.format('MM-DD-YYYY hh:mm:ss'),
+                start: event.start.format('MM-DD-YYYY hh:mm:ss A'),
+                end: event.end.format('MM-DD-YYYY hh:mm:ss A'),
                 allday: event.allDay,
                 editable: event.editable
             }),
