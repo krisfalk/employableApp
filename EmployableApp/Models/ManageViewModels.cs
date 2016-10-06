@@ -15,6 +15,10 @@ namespace EmployableApp.Models
         public ApplicationUser currentUser { get; set; }
         public ProgramAddress UserLocation { get; set; }
         public ProgramAddress BusinessLocation { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string City { get; set; }
+
     }
 
     public class ManageLoginsViewModel

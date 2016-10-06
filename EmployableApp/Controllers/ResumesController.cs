@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace EmployableApp.Controllers
 {
@@ -50,19 +51,18 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ResumeId,UserId,JobExperienceOne,JobExperienceTwo,JobExperienceThree,HighSchool,College,OtherSchooling,Skills,ReferenceOne,ReferenceTwo,ReferenceThree")] Resume resume)
         {
-            
+            var userId = User.Identity.GetUserId();
+
+            var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
-                List<string> resumeItems = new List<string>();
-                resumeItems.Add(resume.JobExperienceOne);
-                resumeItems.Add(resume.JobExperienceTwo);
-                resumeItems.Add(resume.JobExperienceThree);
 
-                FileWriter fileWriter = new FileWriter(resumeItems);
+                FileWriter fileWriter = new FileWriter(resume, user);
 
-                db.Resumes.Add(resume);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //db.Resumes.Add(resume);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
            
 
@@ -116,6 +116,22 @@ namespace EmployableApp.Controllers
                 return HttpNotFound();
             }
             return View(resume);
+        }
+
+        public ActionResult TestView()
+        {
+
+            string lat = "8";
+            string lng = "8";
+            string city = "hello";
+
+            var model = new IndexViewModel
+            {
+                Latitude = lat,
+                Longitude = lng,
+                City = city
+            };
+            return View(model);
         }
 
         // POST: Resumes/Delete/5
