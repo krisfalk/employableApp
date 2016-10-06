@@ -39,7 +39,7 @@ namespace EmployableApp.Controllers
         // GET: Resumes/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -50,14 +50,23 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ResumeId,UserId,JobExperienceOne,JobExperienceTwo,JobExperienceThree,HighSchool,College,OtherSchooling,Skills,ReferenceOne,ReferenceTwo,ReferenceThree")] Resume resume)
         {
+            
             if (ModelState.IsValid)
             {
+                List<string> resumeItems = new List<string>();
+                resumeItems.Add(resume.JobExperienceOne);
+                resumeItems.Add(resume.JobExperienceTwo);
+                resumeItems.Add(resume.JobExperienceThree);
+
+                FileWriter fileWriter = new FileWriter(resumeItems);
+
                 db.Resumes.Add(resume);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+           
 
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -73,7 +82,7 @@ namespace EmployableApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -90,7 +99,7 @@ namespace EmployableApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
