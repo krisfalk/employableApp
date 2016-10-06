@@ -88,33 +88,17 @@ function displayResultsInHtml(readyResults){
       
         htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
         htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
-        htmlToAdd += '<div id="city"><a href="" onclick="setLatLng({1}, {0})" id="secondA">'.replace("urlCity", 'http://localhost:44172/Jobs/DisplayCity').replace("{0}", individual.longitude).replace("{1}", individual.latitude).replace("{3}", individual.city) + '{2}'.replace("{2}", individual.city) + '</a></div>';
-
+        htmlToAdd += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
+            .replace("longitude", individual.longitude)
+            .replace("latitude", individual.latitude)
+            .replace("city", individual.city)
+            .replace("city2", individual.city) + '</a></div></form>';
     }
 
     $('#result').html(htmlToAdd);
 
 }
 
-//function setLatLng(latitude, longitude) {
-//    Html.Partial("DisplayCity", new{lat:latitude, lng:longitude});
-//}
-
-function Coordinates(myLatitude, myLongitude, myCityName) {
-    this.latitude = myLatitude;
-    this.longitude = myLongitude;
-    this.city = myCityName;
-}
-function setLatLng(latitude, longitude) {
-    var coords = new Coordinates(latitude.toString(), longitude, "Phish");
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:44172/Jobs/Details",
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify(coords)
-    });
-}
 
 function sortBySortInput(readyResults, typeChoice)
 {

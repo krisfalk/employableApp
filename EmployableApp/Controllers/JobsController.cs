@@ -46,7 +46,7 @@ namespace EmployableApp.Controllers
                 Longitude = lng,
                 CityName = city
             };
-            return View();
+            return View(model);
         }
 
 
