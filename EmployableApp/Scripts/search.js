@@ -77,7 +77,8 @@ function handleReturnResults(totalResults) {
 }
 
 
-
+var lat = "";
+var lng = "";
 
 function displayResultsInHtml(readyResults){
     var htmlToAdd = "";
@@ -87,7 +88,7 @@ function displayResultsInHtml(readyResults){
       
         htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
         htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
-        htmlToAdd += '<div id="city"><a href="urlCity" onclick="goToCity({0}, {1})" id="secondA">'.replace("urlCity", 'http://localhost:44172/Jobs/DisplayCity').replace("{0}", individual.longitude).replace("{1}", individual.latitude) + 'title'.replace("title", individual.city) + '</a></div>';
+        htmlToAdd += '<div id="city"><a href="" onclick="setLatLng({1}, {0})" id="secondA">'.replace("urlCity", 'http://localhost:44172/Jobs/DisplayCity').replace("{0}", individual.longitude).replace("{1}", individual.latitude).replace("{3}", individual.city) + '{2}'.replace("{2}", individual.city) + '</a></div>';
 
     }
 
@@ -95,6 +96,25 @@ function displayResultsInHtml(readyResults){
 
 }
 
+//function setLatLng(latitude, longitude) {
+//    Html.Partial("DisplayCity", new{lat:latitude, lng:longitude});
+//}
+
+function Coordinates(myLatitude, myLongitude, myCityName) {
+    this.latitude = myLatitude;
+    this.longitude = myLongitude;
+    this.city = myCityName;
+}
+function setLatLng(latitude, longitude) {
+    var coords = new Coordinates(latitude.toString(), longitude, "Phish");
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:44172/Jobs/Details",
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(coords)
+    });
+}
 
 function sortBySortInput(readyResults, typeChoice)
 {
@@ -137,27 +157,63 @@ function getCheckedBoxes(checkbox) {
     });
 }
 
-function goToCity(longitude, latitude) {
-        var coordinates = latitude + "," + longitude;
-        var currentUrl = 'https://api.teleport.org/api/locations/' + coordinates + '/?embed=location%3Anearest-cities%2Flocation%3Anearest-city';
-        var cityName = "";
-        var cityPopulation = "";
-        var cityDescription = "";
+function goToCity() {
+    var coordinates = lat + "," + lng;
+    var currentUrl = 'https://api.teleport.org/api/locations/' + coordinates + '/?embed=location%3Anearest-cities%2Flocation%3Anearest-city';
+    var cityNameFull = "";
+    var cityNameShort = "";
+    var cityPopulation = "";
+    var cityDescription = "";
+    var html = "";
+        
+    $.ajax
+    ({
+        type: "GET",
+        url: currentUrl,
+        //dataType: "json",
+        success: function (response) {
+            alert(response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name);
+            cityNameFull = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name;
+            alert(response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].name);
+            cityNameShort = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].name;
+            alert(response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population);
+            cityPopulation = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population;
 
-        $.ajax
-        ({
-            type: "GET",
-            url: teleportUrl,
-            //dataType: "json",
-            success: function (response) {
-                cityName = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name;
-                cityPopulation = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population;
-                }
-            }
-        );
+            var html = '<div id="city"><h3>{0}</h3></div>'.replace("{0}", cityNameFull);
 
-        currentUrl = "";
+            $('#cityName').html(html);
+       }
+    }
+    );
+    //var keyword = city;
+    //var currentUrl2 = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=' + keyword;
+
+    //$.ajax
+    //    ({
+    //        type: "GET",
+    //        url: currentUrl2,
+    //        //dataType: "json",
+    //        success: function (response) {
+    //            alert(response);
+    //        }
+    //    }
+    //    );
 }
+//function SetDescription(name) {
+//    var keyword = name;
+//    var currentUrl2 = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=' + keyword;
+
+//    $.ajax
+//        ({
+//            type: "GET",
+//            url: currentUrl2,
+//            //dataType: "json",
+//            success: function (response) {
+//                alert(response);
+//            }
+//        }
+//        );
+//}
 
 function saveJob() {
     var checkedBoxes = getCheckedBoxes("checkbox");
