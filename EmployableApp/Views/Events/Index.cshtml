@@ -75,13 +75,21 @@
     // page is now ready, initialize the calendar...
 
         $('#calendar').fullCalendar({
-        // put your options and callbacks here
+            // put your options and callbacks here
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            timezone: "local",
             weekends: true,
             height: 500,
             editable: true,
             cache: true,
             allDay: false,
-            displayEventTime: false,
+            displayEventTime: true,
+            defaultTimedEventDuration: '01:00:00',
+            slotDuration: '00:60:00',
             events: 'GetCalendarEvents',
 
             eventDrop: function(event,revertFunc) {
@@ -89,15 +97,12 @@
                     //save changes to event in database****
                     EditEvent(event);
                 }
-                else {
-                    revertFunc();
-                }
             },
 
             dayClick: function(date, allDay, jsEvent, view) {
                 var description = prompt('Enter a description:');
                 if (description) {
-                    var data = {title: description, start: date, end:date, editable: true, allDay: false, }
+                    var data = {title: description, start: date, end: date, editable: true, allDay: false, }
                     $('#calendar').fullCalendar('renderEvent', { title: description, start: date, }, true);
                     CreateEvent(data);
                 }
@@ -110,8 +115,6 @@
                     $('#calendar').fullCalendar('removeEvents', calEvent._id);
                     //remove event in database******
                     DeleteEvent(calEvent.Id);
-
-
                 }
 
                 // if (name) {
@@ -121,8 +124,15 @@
                 // }
             },
             eventConstraint: {
-                start: moment().subtract(1, 'week').format('MM-DD-YYYY'),
+                start: moment().subtract(1, 'week').format('MM-DD-YYYY hh:mm:ss'),
                 end: '2050-05-05'
+            },
+
+            eventResize: function (event) {
+                if (confirm("Do you want to save this event?")) {
+                    //save changes to event in database****
+                    EditEvent(event);
+                }
             }
         });
 
@@ -138,8 +148,8 @@
                 __RequestVerificationToken: $('[name= "__RequestVerificationToken"]').val(),
                 Id: drag.Id,
                 title: drag.title,
-                start: drag.start.format('MM-DD-YYYY'),
-                end: drag.start.format('MM-DD-YYYY'),
+                start: drag._start.format('MM-DD-YYYY hh:mm:ss'),
+                end: drag._end.format('MM-DD-YYYY hh:mm:ss'),
                 allday: drag.allDay,
                 editable: drag.editable
             }),
@@ -170,8 +180,6 @@
                     //revertFunc();
                     return;
                 }
-                //calendar.fullCalendar('updateEvent', event);
-                //calendar.fullCalendar( 'refetchEvents' )
             },
             error: function () {
                 //    revertFunc();
@@ -182,15 +190,14 @@
     function CreateEvent(event) {
 
         $.ajax({
-
             url: 'Create',
             type: "POST",
             dataType: "json",
             data: ({
                 __RequestVerificationToken: $('[name= "__RequestVerificationToken"]').val(),
                 title: event.title,
-                start: event.start.format('MM-DD-YYYY'),
-                end: event.start.format('MM-DD-YYYY'),
+                start: event.start.format('MM-DD-YYYY hh:mm:ss'),
+                end: event.end.format('MM-DD-YYYY hh:mm:ss'),
                 allday: event.allDay,
                 editable: event.editable
             }),
