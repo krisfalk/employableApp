@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
 
+using System.Web.Helpers;
+using Microsoft.AspNet.Identity;
+
 namespace EmployableApp.Controllers
 {
     public class EventsController : Controller
@@ -15,9 +18,18 @@ namespace EmployableApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Events
-        public JsonResult Index()
+        public ActionResult Index()
         {
-            var events = db.Events.Include(x => x.ApplicationUser);
+            var userId = User.Identity.GetUserId();
+            var events = db.Events.Where(x => x.UserId == userId).ToArray();
+            return View(events);
+            //return Json(events, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetCalendarEvents()
+        {
+            var userId = User.Identity.GetUserId();
+            var events = db.Events.Where(x => x.UserId == userId).ToArray();
             return Json(events, JsonRequestBehavior.AllowGet);
         }
 
@@ -48,8 +60,9 @@ namespace EmployableApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserId,StartDate,Title,Editable")] Event @event)
+        public ActionResult Create([Bind(Include = "Id, UserId, start, end, title, editable, allDay")] Event @event)
         {
+            @event.UserId = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);
@@ -74,7 +87,7 @@ namespace EmployableApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", @event.UserId);
-            return View(@event);
+            return View();
         }
 
         // POST: Events/Edit/5
@@ -82,10 +95,11 @@ namespace EmployableApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserId,StartDate,Title,Editable")] Event @event)
+        public ActionResult Edit([Bind(Include = "Id, UserId, start, end, editable, title, allDay")] Event @event)
         {
             if (ModelState.IsValid)
             {
+                @event.UserId = User.Identity.GetUserId();
                 db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
