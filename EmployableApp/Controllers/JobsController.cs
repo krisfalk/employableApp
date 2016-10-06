@@ -21,21 +21,32 @@ namespace EmployableApp.Controllers
             var job = db.Jobs.Include(j => j.ApplicationUser);
             return View(job.ToList());
         }
-   
 
-        // GET: Jobs/Details/5
-        public ActionResult Details(int? id)
+
+        //GET: Jobs/Details/5
+        public ActionResult Details(LatLng myCoords)
         {
-            if (id == null)
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Job job = db.Jobs.Find(id);
+            //if (job == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(job);
+            string lat = myCoords.Latitude;
+            string lng = myCoords.Longitude;
+            string city = myCoords.City;
+
+            var model = new IndexViewModel
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Job job = db.Jobs.Find(id);
-            if (job == null)
-            {
-                return HttpNotFound();
-            }
-            return View(job);
+                Latitude = lat,
+                Longitude = lng,
+                CityName = city
+            };
+            return View(model);
         }
 
 
@@ -76,6 +87,29 @@ namespace EmployableApp.Controllers
             return View();
         }
 
+        public class LatLng
+        {
+            public string Latitude { get; set; }
+            public string Longitude { get; set; }
+            public string City { get; set; }
+        }
+
+        [AllowAnonymous]
+        public ActionResult DisplayCity(LatLng myCoords)
+        {
+            string lat = myCoords.Latitude;
+            string lng = myCoords.Longitude;
+            string city = myCoords.City;
+
+            var model = new IndexViewModel
+            {
+                Latitude = lat,
+                Longitude = lng,
+                CityName = city
+            };
+            return View(model);
+            
+        }
         // GET: Jobs/Create
         public ActionResult Create()
         {
@@ -99,13 +133,6 @@ namespace EmployableApp.Controllers
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", job.UserId);
             return View(job);
-        }
-
-        public ActionResult DisplayCity()
-        {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
-            return View();
-
         }
 
         // POST: Jobs/Create

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace EmployableApp.Controllers
 {
@@ -39,7 +40,7 @@ namespace EmployableApp.Controllers
         // GET: Resumes/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
             return View();
         }
 
@@ -50,14 +51,22 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ResumeId,UserId,JobExperienceOne,JobExperienceTwo,JobExperienceThree,HighSchool,College,OtherSchooling,Skills,ReferenceOne,ReferenceTwo,ReferenceThree")] Resume resume)
         {
+            var userId = User.Identity.GetUserId();
+
+            var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
-                db.Resumes.Add(resume);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+                FileWriter fileWriter = new FileWriter(resume, user);
+
+                //db.Resumes.Add(resume);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+           
+
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -73,7 +82,7 @@ namespace EmployableApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -90,7 +99,7 @@ namespace EmployableApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList(db.ApplicationUsers, "Id", "FirstName", resume.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
             return View(resume);
         }
 
@@ -107,6 +116,22 @@ namespace EmployableApp.Controllers
                 return HttpNotFound();
             }
             return View(resume);
+        }
+
+        public ActionResult TestView()
+        {
+
+            string lat = "8";
+            string lng = "8";
+            string city = "hello";
+
+            var model = new IndexViewModel
+            {
+                Latitude = lat,
+                Longitude = lng,
+                CityName = city
+            };
+            return View(model);
         }
 
         // POST: Resumes/Delete/5

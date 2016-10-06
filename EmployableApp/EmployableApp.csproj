@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Docentric.Documents.ObjectModel, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL" />
+    <Reference Include="Docentric.Documents.Reporting, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL" />
+    <Reference Include="Docentric.Shared, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL" />
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Google.Maps, Version=0.13.30.26576, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\gmaps-api-net.0.13.30\lib\net\Google.Maps.dll</HintPath>
       <Private>True</Private>
@@ -150,6 +154,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -210,6 +215,7 @@
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ResumesController.cs" />
+    <Compile Include="FileWriter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,12 +235,17 @@
     <Compile Include="Migrations\201610052029450_update to resume table.Designer.cs">
       <DependentUpon>201610052029450_update to resume table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610061927367_update.cs" />
+    <Compile Include="Migrations\201610061927367_update.Designer.cs">
+      <DependentUpon>201610061927367_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobChecker.cs" />
     <Compile Include="Models\JobViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProgramAddress.cs" />
@@ -326,6 +337,7 @@
     <Content Include="Views\Resumes\Details.cshtml" />
     <Content Include="Views\Resumes\Edit.cshtml" />
     <Content Include="Views\Resumes\Index.cshtml" />
+    <Content Include="Views\Resumes\TestView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610052029450_update to resume table.resx">
       <DependentUpon>201610052029450_update to resume table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610061927367_update.resx">
+      <DependentUpon>201610061927367_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
