@@ -76,8 +76,6 @@ function handleReturnResults(totalResults) {
 }
 
 
-var lat = "";
-var lng = "";
 
 function displayResultsInHtml(readyResults){
     var htmlToAdd = "";
@@ -140,7 +138,7 @@ function getCheckedBoxes(checkbox) {
     });
 }
 
-function goToCity() {
+function goToCity(lat, lng) {
     var coordinates = lat + "," + lng;
     var currentUrl = 'https://api.teleport.org/api/locations/' + coordinates + '/?embed=location%3Anearest-cities%2Flocation%3Anearest-city';
     var cityNameFull = "";
@@ -155,16 +153,18 @@ function goToCity() {
         url: currentUrl,
         //dataType: "json",
         success: function (response) {
-            alert(response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name);
             cityNameFull = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name;
-            alert(response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].name);
             cityNameShort = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].name;
-            alert(response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population);
             cityPopulation = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population;
 
             var html = '<div id="city"><h3>{0}</h3></div>'.replace("{0}", cityNameFull);
 
             $('#cityName').html(html);
+
+            html = '<div id="population"><h4>Population: {0}</h4></div>'.replace("{0}", cityPopulation);
+
+            $('#populationField').html(html);
+
        }
     }
     );
@@ -182,21 +182,20 @@ function goToCity() {
     //    }
     //    );
 }
-//function SetDescription(name) {
-//    var keyword = name;
-//    var currentUrl2 = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=' + keyword;
+function SetDescription(city) {
+    var currentUrl2 = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=' + city;
 
-//    $.ajax
-//        ({
-//            type: "GET",
-//            url: currentUrl2,
-//            //dataType: "json",
-//            success: function (response) {
-//                alert(response);
-//            }
-//        }
-//        );
-//}
+    $.ajax
+        ({
+            type: "GET",
+            url: currentUrl2,
+            dataType: "jsonp",
+            success: function (response) {
+                alert(response);
+            }
+        }
+        );
+}
 
 function saveJob() {
     var checkedBoxes = getCheckedBoxes("checkbox");

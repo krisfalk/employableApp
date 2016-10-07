@@ -1,81 +1,21 @@
 ﻿@model EmployableApp.Models.IndexViewModel
+    @{string myCity = Model.CityName; }
+<body onload="goToCity(@Model.Latitude, @Model.Longitude);SetDescription('@myCity')"> 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>City Information:</h2>
 
-@*<div>
-    <h4>Job</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.FirstName)
-        </dd>
+           <div id="cityName"></div>
+           <div id="populationField"></div>
+           <div id="cityInfo"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/pagination.js"></script>
+    <script type="text/javascript" src="~/scripts/search.js" ></script>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AppliedFor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AppliedFor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Favorite)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Favorite)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Posting_Link)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Posting_Link)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Longitude)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+}
+    </body>

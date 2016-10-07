@@ -44,10 +44,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Docentric.Documents.ObjectModel, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL" />
-    <Reference Include="Docentric.Documents.Reporting, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL" />
-    <Reference Include="Docentric.Shared, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL" />
-    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Docentric.Documents.ObjectModel, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Docentric.Documents.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Docentric.Documents.Reporting, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Docentric.Documents.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Docentric.Shared, Version=4.1.0.1183, Culture=neutral, PublicKeyToken=c2a1f9cfb4f15acd, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Docentric.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Maps, Version=0.13.30.26576, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\gmaps-api-net.0.13.30\lib\net\Google.Maps.dll</HintPath>
       <Private>True</Private>
