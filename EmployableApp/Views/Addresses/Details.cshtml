@@ -1,66 +1,24 @@
-﻿@model EmployableApp.Models.Address
-
+﻿@model EmployableApp.Models.IndexViewModel
+<body onload="setRegionQuestion()">
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Find your ideal place to live! Take our survey:</h2>
 
-<div>
-    <h4>Address</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HouseNumber)
-        </dt>
+    <div><img src="@Url.Content("~/Content/Images/regionMap.jpg")" /></div>
+<div id="regionQuestion">Loading...</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.HouseNumber)
-        </dd>
+<div id="stateQuestion">Loading...</div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AptNumber)
-        </dt>
+<div id="cityFinal">Loading...</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.AptNumber)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
+@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/pagination.js"></script>
+    <script type="text/javascript" src="~/scripts/search.js"></script>
+    <script type="text/javascript" src="~/scripts/Survey.js"></script>
 
-        <dd>
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Address_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+}
+</body>
