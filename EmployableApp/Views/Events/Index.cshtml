@@ -102,8 +102,11 @@
                 var description = prompt('Enter a description:');
                 if (description) {
                     var data = {title: description, start: date, end: date, editable: true, allDay: false, }
-                    $('#calendar').fullCalendar('renderEvent', { title: description, start: date, end: date}, true);
+                    $('#calendar').fullCalendar('renderEvent', { title: description, start: date, end: date }, true);
+
                     CreateEvent(data);
+                    $('#calendar').fullCalendar('refetchEventSources', 'GetCalendarEvents');
+
                 }
             },
 
@@ -154,14 +157,11 @@
             }),
             success: function (data, textStatus) {
                 if (!data) {
-                    alert("Event could not be saved.");
+                    alert("Changes could not be saved.");
                     return;
                 }
                 calendar.fullCalendar('updateEvent', event);
             },
-            error: function () {
-                alert("Event could not be saved.");
-            }
         });
     };
 
@@ -176,13 +176,10 @@
 
             success: function (data, textStatus) {
                 if (!data) {
-                    alert("Event could not be deleted.");
+                    //alert("Event could not be deleted.");
                     return;
                 }
             },
-            error: function () {
-                alert("Event could not be deleted.");
-            }
         });
     };
 
@@ -203,14 +200,11 @@
 
             success: function (data, textStatus) {
                 if (!data) {
-                    alert("Event could not be created.");
+                    //alert("Event could not be created.");
                     return;
                 }
                 calendar.fullCalendar('updateEvent', event);
             },
-            error: function () {
-                alert("Event could not be created.");
-            }
         });
     };
 </script>
