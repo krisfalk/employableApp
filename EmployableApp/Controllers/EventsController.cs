@@ -96,6 +96,12 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id, UserId, start, end, editable, title, allDay")] Event @event)
         {
+
+            if (@event.Id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (ModelState.IsValid)
             {
                 @event.UserId = User.Identity.GetUserId();
