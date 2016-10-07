@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 30px;
     padding-bottom: 20px;
+    background-color: rgb(200,230,230);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -65,10 +66,17 @@ textarea {
     color: white;
 
 } 
+
+.jumbotron h1{
+    font-size: 12vh;
+    font-family: 'Californian FB'
+}
 .jumbotron {
     width: 100%;
     height: unset;
     text-align: center;
+    background-color: gainsboro;
+    box-shadow: 2px 2px 2px 2px grey;
 }
 .container {
     margin: 0;
@@ -77,33 +85,54 @@ textarea {
 
 .image-wrap{
     position: relative;
-     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
+    height: 45vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
 }
 
-.image-title{
+
+.image-title {
+    
     position: absolute;
     color: white;
     visibility: hidden;
     opacity: 0;
-    font-size: 32px;
-    margin-top: 2px;
-    margin-left: 4px;
-    font-family: "Palatino Linotype", "Book Antiqua", serif; 
-    transition: 1s;
-    align-self: center;
+    font-size: 5vh;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    transition: .75s;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    padding-top:25%;
+    padding-right: 15%;
+    padding-left: 15%;
+    background-color: rgba(0,0,0,.5);
+    text-align: center;
+
+}
+
+.image-title .text{
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
 }
 
 
-.image-wrap:hover .image-title{
+.image-image a:hover .image-title{
     visibility: visible;
     opacity: 1;
 
 }
 .image-wrap img{
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
+
+
+
 }
+/*.image-wrap:hover img {
+    opacity: 1;
+    -webkit-filter: grayscale(100%);
+}*/
