@@ -77,6 +77,10 @@ textarea {
 
 .image-wrap{
     position: relative;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
 }
 
 .image-title{
@@ -89,6 +93,7 @@ textarea {
     margin-left: 4px;
     font-family: "Palatino Linotype", "Book Antiqua", serif; 
     transition: 1s;
+    align-self: center;
 }
 
 
@@ -96,4 +101,9 @@ textarea {
     visibility: visible;
     opacity: 1;
 
+}
+.image-wrap img{
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
 }
