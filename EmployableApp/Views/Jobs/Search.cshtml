@@ -3,52 +3,54 @@
 @{
     ViewBag.Title = "Search";
 }
-
-<h2>Search</h2>
+<div class="container">
+    <h2>Search</h2>
 
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal"></div>
-        <h4>Search</h4>
+    <h4>Search</h4>
 
-<div class="container heading-box">
-    <div class="row" style="margin-top: 10vh">
-        <div class="col-sm-1>"></div>
-        <div class="input-group col-sm-10">
-            <input type="text" class="form-control input-lg" placeholder="Keyword Search" id="search-input" />
-        </div>
+    <div class="container heading-box">
+        <div class="row" style="margin-top: 10vh">
+            <div class="col-sm-1>"></div>
+            <div class="input-group col-sm-10">
+                <input type="text" class="form-control input-lg" placeholder="Keyword Search" id="search-input" />
+            </div>
         </div>
     </div>
-        <div class="container heading-box">
-            <div class="row" style="margin-top: 10vh">
-                <div class="col-sm-1>"></div>
-                <div class="input-group col-sm-10">
-                    <input type="text" class="form-control input-lg" placeholder="City, State" id="city-state-input" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button" onclick="keyWordSearch()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-
-            </div>
+    <div class="container heading-box">
+        <div class="row" style="margin-top: 10vh">
+            <div class="col-sm-1>"></div>
+            <div class="input-group col-sm-10">
+                <input type="text" class="form-control input-lg" placeholder="City, State" id="city-state-input" />
+                <span class="input-group-btn">
+                    <button class="btn btn-info btn-lg" type="button" onclick="keyWordSearch()">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
             </div>
 
-        <div id="result">
         </div>
-        <div id="save" style="display: ">
-            <button onclick="saveJob()"> Save Checked Jobs</button>
-        </div>
-        <h3 id="display-message" style="text-align: center"></h3>
+    </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div id="result">
+    </div>
+    <div id="save">
+        <button onclick="saveJob()"> Save Checked Jobs</button>
+    </div>
+    <div id="myPager"></div>
+    <h3 id="display-message" style="text-align: center"></h3>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
 
-@section Scripts {
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="~/scripts/pagination.js"></script>
-<script type="text/javascript" src="~/scripts/search.js"></script>
+    @section Scripts {
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="~/scripts/pagination.js"></script>
+        <script type="text/javascript" src="~/scripts/search.js"></script>
 
-}
+    }
 
