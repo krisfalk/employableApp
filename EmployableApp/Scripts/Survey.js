@@ -12,12 +12,12 @@ function setRegionQuestion() {
     html += '<strong>What region would you prefer to live in the most?</strong>';
     html += '<form>';
     html += '<input type="radio" name="region" onclick="setStateQuestion(\'Pacific\')">Pacific<br>';
-    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Rocky Mountains\')">Rocky Mountains<br>'.replace("{0}", "Rocky Mountains");
-    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Southwest\')">Southwest<br>'.replace("{0}", "Southwest");
-    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Noncontigious\')">Noncontigious<br>'.replace("{0}", "Noncontigious");
-    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Northeast\')">Northeast<br>'.replace("{0}", "Northeast");
-    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Southeast\')">Southeast<br>'.replace("{0}", "Southeast");
-    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Midwest\')">Midwest<br>'.replace("{0}", "Midwest");
+    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Rocky Mountains\')">Rocky Mountains<br>';
+    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Southwest\')">Southwest<br>';
+    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Noncontigious\')">Noncontigious<br>';
+    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Northeast\')">Northeast<br>';
+    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Southeast\')">Southeast<br>';
+    html += '<input type="radio" name="region" onclick="setStateQuestion(\'Midwest\')">Midwest<br>';
     html += '</form>';
     html += '</div>';
 
@@ -92,7 +92,7 @@ function DisplayFoundCity(city, lat, lng) {
     html += '<div>';
     html += '<h4>The Best City for you is <strong>{0}</strong>!'.replace("{0}", city);
     html += '</div>';
-    html += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
+    html += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "Your City Details">'
            .replace("longitude", lng)
            .replace("latitude", lat)
            .replace("city", city)

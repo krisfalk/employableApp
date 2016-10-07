@@ -176,8 +176,11 @@ function goToCity(lat, lng) {
             cityNameFull = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name;
             cityNameShort = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].name;
             cityPopulation = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population;
-            urbanAreaURL = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"]._links["city:urban_area"].href + "scores/";
+            try{
+                urbanAreaURL = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"]._links["city:urban_area"].href + "scores/";
+            } catch (error) {
 
+            }
             var html = '<div id="city"><h3>{0}</h3></div>'.replace("{0}", cityNameFull);
 
             $('#cityName').html(html);
