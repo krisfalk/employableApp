@@ -5,10 +5,7 @@
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -69,14 +66,20 @@ textarea {
 
 .jumbotron h1{
     font-size: 12vh;
-    font-family: 'Californian FB'
+    font-family: 'Californian FB';
+    color: rgb(200,255,255);
+}
+
+.jumbotron h2{
+    color: rgb(128, 128, 128);
 }
 .jumbotron {
     width: 100%;
     height: unset;
     text-align: center;
-    background-color: gainsboro;
-    box-shadow: 2px 2px 2px 2px grey;
+    background-color: black;
+    margin-bottom: 0;
+
 }
 .container {
     margin: 0;
@@ -94,8 +97,19 @@ textarea {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat; 
+    max-width: 100%;
+    transition: .5s;
+}
+.image-image{
+    max-width: 100%;
+    overflow: hidden;
 }
 
+.col-sm-4{
+    overflow: hidden;
+    max-width: 100%;
+    padding: 0;
+}
 
 .image-title {
     
@@ -113,9 +127,15 @@ textarea {
     padding-left: 15%;
     background-color: rgba(0,0,0,.5);
     text-align: center;
-
+ 
 }
-
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .image-title .text{
     margin: auto;
     top: 0; left: 0; bottom: 0; right: 0;
@@ -127,12 +147,15 @@ textarea {
     opacity: 1;
 
 }
-.image-wrap img{
-
-
-
+.image-image a:hover .image-wrap{
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  
 }
-/*.image-wrap:hover img {
-    opacity: 1;
-    -webkit-filter: grayscale(100%);
-}*/
+.footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: black;
+    }

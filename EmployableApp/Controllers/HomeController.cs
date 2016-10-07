@@ -10,7 +10,8 @@ namespace EmployableApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            
+            return View("Index", "_HomeLayout");
         }
 
         public ActionResult About()
