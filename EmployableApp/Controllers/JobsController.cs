@@ -16,7 +16,7 @@ namespace EmployableApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Jobs
-        public ActionResult Index()
+        public ActionResult SavedJobs()
         {
             var job = db.Jobs.Include(j => j.ApplicationUser);
             return View(job.ToList());

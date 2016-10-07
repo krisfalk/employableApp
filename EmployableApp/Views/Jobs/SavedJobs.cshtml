@@ -16,14 +16,10 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Posting_Link)
+            @Html.DisplayNameFor(model => model.Favorite)
         </th>
-
         <th>
             @Html.DisplayNameFor(model => model.AppliedFor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Favorite)
         </th>
         <th></th>
     </tr>
@@ -31,23 +27,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            <a href="@item.Posting_Link">@Html.DisplayFor(modelItem => item.Title)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CompanyName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Posting_Link)
+            @(item.Favorite? "Yes" : "No")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Favorite)
+           
+            @(item.AppliedFor? "Yes" : "No")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AppliedFor)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.JobId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.JobId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.JobId })
         </td>
     </tr>

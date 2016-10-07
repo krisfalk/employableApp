@@ -8,7 +8,7 @@ function keyWordSearch(){
     if ($('#search-input').val() != "") {
         encodedParameters = handleParameters();
     }
-    var url= "http://api.indeed.com/ads/apisearch?publisher=6943012943597582&format=json&" + encodedParameters + "&sort=&radius=&st=&jt=&start=&limit=&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
+    var url= "http://api.indeed.com/ads/apisearch?publisher=6943012943597582&format=json&" + encodedParameters + "&sort=&radius=&st=&jt=&start=&limit=&end=50&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
     $('head').append('<script src="' + url + '"></script>');
 
 }
@@ -68,7 +68,6 @@ function handleReturnResults(totalResults) {
   if (readyResults.length != 0) {
 
       displayResultsInHtml(readyResults);
-      $('#myTableBody').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:10});
     }
     else {
       $('#display-message').html("I'm sorry, your search yielded no results. Please try again with other key words.");
