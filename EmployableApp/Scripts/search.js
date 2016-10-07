@@ -5,10 +5,12 @@
 function keyWordSearch(){
     var encodedParameters;
 
+
+
     if ($('#search-input').val() != "") {
         encodedParameters = handleParameters();
     }
-    var url= "http://api.indeed.com/ads/apisearch?publisher=6943012943597582&format=json&" + encodedParameters + "&sort=&radius=&st=&jt=&start=&limit=100&end=50&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
+    var url= "http://api.indeed.com/ads/apisearch?publisher=6943012943597582&format=json&" + encodedParameters + "&sort=date&radius=&st=&jt=&start=&limit=50&end=50&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla/%2F4.0%28Firefox%29&v=2";
     $('head').append('<script src="' + url + '"></script>');
 
 }
@@ -66,13 +68,19 @@ function handleReturnResults(totalResults) {
   }
 
   if (readyResults.length != 0) {
-
+      $('#result').show();
+      $('#display-message').hide();
+      $('#save').show();
+      $('#resultHeader').show();
       displayResultsInHtml(readyResults);
     }
-    else {
-      $('#display-message').html("I'm sorry, your search yielded no results. Please try again with other key words.");
+  else {
+      $('#result').hide();
+      $('#save').hide();
+      $('#display-message').show();
+      $('#resultHeader').hide();
+      $('#display-message').html("I'm sorry, your search yielded no results. Please try again with other keywords.");
     }
-
 }
 
 
@@ -82,14 +90,25 @@ function displayResultsInHtml(readyResults){
     readyResults = readyResults.forEach(getDisplayForTrack);
 
     function getDisplayForTrack(individual) {
-      
-        htmlToAdd += '<div> <input id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
-        htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
-        htmlToAdd += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
+        htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
+        htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        htmlToAdd += '<div class="col-sm-3"><center>'+ individual.postDate + '</center></div>'
+        htmlToAdd += '<div class="col-sm-3"><center>' + individual.company + '</center></div>'
+        htmlToAdd += '<div class="col-sm-2"><center><form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'   
             .replace("longitude", individual.longitude)
             .replace("latitude", individual.latitude)
             .replace("city", individual.city)
-            .replace("city2", individual.city) + '</a></div></form>';
+            .replace("city2", individual.city) + '</a></form></center></div><div class="row"><div class="col-sm-12"><hr /l></div></div>';
+
+
+        //original results display
+        //htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
+        //htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        //htmlToAdd += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
+        //    .replace("longitude", individual.longitude)
+        //    .replace("latitude", individual.latitude)
+        //    .replace("city", individual.city)
+        //    .replace("city2", individual.city) + '</a></div></form>';
     }
 
     $('#result').html(htmlToAdd);

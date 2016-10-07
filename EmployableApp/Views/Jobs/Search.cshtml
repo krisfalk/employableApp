@@ -4,47 +4,64 @@
     ViewBag.Title = "Search";
 }
 <div class="container">
-    <h2>Search</h2>
-
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal"></div>
-    <h4>Search</h4>
+    <h4>Search for Jobs</h4>
 
     <div class="container heading-box">
         <div class="row" style="margin-top: 10vh">
-            <div class="col-sm-1>"></div>
-            <div class="input-group col-sm-10">
-                <input type="text" class="form-control input-lg" placeholder="Keyword Search" id="search-input" />
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input type="text" class="form-control input-lg" placeholder="Enter keyword or company" id="search-input" />
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="container heading-box">
-        <div class="row" style="margin-top: 10vh">
-            <div class="col-sm-1>"></div>
-            <div class="input-group col-sm-10">
-                <input type="text" class="form-control input-lg" placeholder="City, State" id="city-state-input" />
-                <span class="input-group-btn">
+
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input type="text" class="form-control input-lg" placeholder="City, State or Zip Code" id="city-state-input" />
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="input-group-btn">
                     <button class="btn btn-info btn-lg" type="button" onclick="keyWordSearch()">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
-                </span>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <div id="result">
+    <div class="row"><hr /></div>
+
+    <div class="row" id="resultHeader" hidden>
+        <div class="col-sm-1"><center>Save</center></div>
+        <div class="col-sm-3"><center>Job Title</center></div>
+        <div class="col-sm-3"><center>Date Posted</center></div>
+        <div class="col-sm-3"><center>Company</center></div>
+        <div class="col-sm-2"><center>City Demographics</center></div>
+        <div><hr /></div>
     </div>
-    <div id="save">
+       
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" id="result">
+            </div>
+        </div>
+    </div>
+
+
+    <div id="save" hidden>
         <button onclick="saveJob()"> Save Checked Jobs</button>
     </div>
     <div id="myPager"></div>
     <h3 id="display-message" style="text-align: center"></h3>
 
-    <div>
+    @*<div>
         @Html.ActionLink("Back to List", "Index")
-    </div>
+    </div>*@
 </div>
 
     @section Scripts {
