@@ -12,26 +12,21 @@
          @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    <div class="navbar sidenav" id="mySideNav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<body style="margin-left: 7vw;">
+    <div class="navbar sidenav" id="mySideNav" style="width: 7vw;">
         @Html.ActionLink("Home", "Index", "Home")
         @Html.ActionLink("About", "About", "Home")
         @Html.ActionLink("Contact", "Contact", "Home")
-        @Html.ActionLink("View Saved Jobs", "SavedJobs", "Jobs")
-        @Html.ActionLink("Job Search", "Search", "Jobs")
-        @Html.ActionLink("Resume Help", "Create", "Resumes")
-        @Html.ActionLink("Calendar", "Index", "Events")
+
         @Html.Partial("_LoginPartial")
 
     </div>
-    <span style="font-size: 30px; cursor: pointer" onclick="openNav()"> &#9776; Menu</span>
 
 
     <div class="body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="footer">
             <p>&copy; @DateTime.Now.Year - dotemployable.com</p>
         </footer>
     </div>
@@ -39,14 +34,6 @@
    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
-function openNav() {
-    document.getElementById("mySideNav").style.width = "250px";
 
-}
-            function closeNav() {
-                document.getElementById("mySideNav").style.width = "0";
-            }
-    </script>
 </body>
 </html>

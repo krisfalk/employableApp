@@ -5,38 +5,53 @@
 <div class="jumbotron">
 
         <h1>.employable</h1>
+        <h2>.you + .us = .hired</h2>
         @*<p class="btn btn-primary btn-lg">@Html.ActionLink("Learn More", "Index", "Home") &raquo; </p>*@
 
 </div>
 
      <div class="row" style="height:45vh;">
-    <div class="col-sm-4 image-wrap">
-            <a href="~/Jobs/Search">
-                <img src="http://ww2.kqed.org/pop/wp-content/uploads/sites/12/2013/03/HireMe.jpeg" style="float: left;  height:45vh; margin-bottom: 0.5em; ">
-                <div class="image-title">
-                    Search For Jobs
-                </div>
-                </a>
-        </div>
-    
+    <div class="col-sm-4 image-image">
+        <a href="~/Jobs/Search">
+            <div class="image-wrap" style="background-image: url(http://ww2.kqed.org/pop/wp-content/uploads/sites/12/2013/03/HireMe.jpeg);">
 
-    <div class="col-sm-4 image-wrap">  
-        
-            <a href="~/Resumes/Create">
-                <img src="@Url.Content("~/Content/Images/coffee-cup-desk-pen.jpg")" style="float: left; height:45vh; margin-bottom: 0.5em;">
-                <div class="image-title"> Build Your Resume      
+                <div class="image-title">
+                    <div class="text">
+                        Search For Jobs
+                    </div>
                 </div>
-            </a>
-  
-    </div>
-    <div class="col-sm-4 image-wrap">
-        <a href="~/Events/Index">
-            <img src="@Url.Content("~/Content/Images/numbers-time-watch-white.jpg")" style="float: left; height:45vh; margin-bottom: 0.5em;">
-            <div class="image-title">Manage Your Calendar</div>
+            </div>
         </a>
     </div>
+
+         <div class="col-sm-4 image-image">
+             <a href="~/Resumes/Create">
+                 <div class="image-wrap" style="background-image: url(Content/Images/coffee-cup-desk-pen.jpg);">
+                     <div class="image-title">
+                         <div class="text">
+                             Build Your Resume
+                         </div>
+                     </div>
+                 </div>
+             </a>
+
+         </div>
+<div class="col-sm-4 image-image">
+    <a href="~/Events/Index">
+        <div class="image-wrap" style="background-image: url(Content/Images/numbers-time-watch-white.jpg)">
+            <div class="image-title">
+                <div class="text">
+                    Manage Your Calendar
+                </div>
+            </div>
+        </div>
+</a>
 </div>
+</div>
+
+
+
 <p style="clear: both;">
 
-<p><a class="btn btn-default" href="">Learn more &raquo;</a></p>
+
 

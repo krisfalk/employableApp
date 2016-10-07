@@ -1,13 +1,11 @@
 ﻿body {
     padding-top: 30px;
     padding-bottom: 20px;
+    background-color: rgb(200,230,230);
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -65,10 +63,23 @@ textarea {
     color: white;
 
 } 
+
+.jumbotron h1{
+    font-size: 12vh;
+    font-family: 'Californian FB';
+    color: rgb(200,255,255);
+}
+
+.jumbotron h2{
+    color: rgb(128, 128, 128);
+}
 .jumbotron {
     width: 100%;
     height: unset;
     text-align: center;
+    background-color: black;
+    margin-bottom: 0;
+
 }
 .container {
     margin: 0;
@@ -77,33 +88,74 @@ textarea {
 
 .image-wrap{
     position: relative;
-     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
+    height: 45vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    max-width: 100%;
+    transition: .5s;
+}
+.image-image{
+    max-width: 100%;
+    overflow: hidden;
 }
 
-.image-title{
+.col-sm-4{
+    overflow: hidden;
+    max-width: 100%;
+    padding: 0;
+}
+
+.image-title {
+    
     position: absolute;
     color: white;
     visibility: hidden;
     opacity: 0;
-    font-size: 32px;
-    margin-top: 2px;
-    margin-left: 4px;
-    font-family: "Palatino Linotype", "Book Antiqua", serif; 
-    transition: 1s;
-    align-self: center;
+    font-size: 5vh;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+    transition: .75s;
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    padding-top:25%;
+    padding-right: 15%;
+    padding-left: 15%;
+    background-color: rgba(0,0,0,.5);
+    text-align: center;
+ 
+}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.image-title .text{
+    margin: auto;
+    top: 0; left: 0; bottom: 0; right: 0;
 }
 
 
-.image-wrap:hover .image-title{
+.image-image a:hover .image-title{
     visibility: visible;
     opacity: 1;
 
 }
-.image-wrap img{
-    flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%
+.image-image a:hover .image-wrap{
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  
 }
+.footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: black;
+    }
