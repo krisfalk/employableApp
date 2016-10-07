@@ -90,12 +90,14 @@ function displayResultsInHtml(readyResults){
     readyResults = readyResults.forEach(getDisplayForTrack);
 
     function getDisplayForTrack(individual) {
-
         htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
         htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
         htmlToAdd += '<div class="col-sm-3"><center>'+ individual.postDate + '</center></div>'
         htmlToAdd += '<div class="col-sm-3"><center>' + individual.company + '</center></div>'
-        htmlToAdd += '<div class="col-sm-2"><center><form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
+        htmlToAdd += '<div class="col-sm-2"><center><form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'   
+        htmlToAdd += '<div> <input id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
+        htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        htmlToAdd += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
             .replace("longitude", individual.longitude)
             .replace("latitude", individual.latitude)
             .replace("city", individual.city)
@@ -192,22 +194,8 @@ function goToCity(lat, lng) {
        }
     }
     );
-    //var keyword = city;
-    //var currentUrl2 = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=' + keyword;
-
-    //$.ajax
-    //    ({
-    //        type: "GET",
-    //        url: currentUrl2,
-    //        //dataType: "json",
-    //        success: function (response) {
-    //            alert(response);
-    //        }
-    //    }
-    //    );
 }
 function SetDescription(URL) {
-    alert("2");
     var citySummary = "";
     var html = "";
     var currentUrl2 = URL;
@@ -218,22 +206,16 @@ function SetDescription(URL) {
             url: currentUrl2,
             //dataType: "jsonp",
             success: function (response) {
-                //for(var item in response)
-                //    alert(item);
                 citySummary = '<div id="summaryText">{0}</div>'.replace("{0}", response.summary);
                 for (var i = 0; i < response.categories.length; i++) {
                     html += '<div>';
-                    html += '<strong>{0}</strong> : Rated {2} out of 10'.replace("{0}", response.categories[i].name).replace("{2}", Math.round(response.categories[i].score_out_of_10));
+                    html += '<strong>{0}</strong> : Rated {2} out of 10'.replace("{0}", response.categories[i].name).replace("{2}", Math.max(Math.round(response.categories[i].score_out_of_10  * 10) / 10, 1).toFixed(1));
                     html += '<br />';
                     html += '<progress value="{1}" max="100"></progress>'.replace("{1}", response.categories[i].score_out_of_10 * 10);
                     html += '</div>';
-                    //html += '<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{1}" aria-valuemin="0" aria-valuemax="100" style="width:50%">{0} : Rated {2} out of 10</div>'.replace("{0}", response.categories[i].name).replace("{1}", response.categories[i].score_out_of_10 * 10).replace("{2}", Math.round(response.categories[i].score_out_of_10));
-                    //html += '<br />';
                 }
                 $('#cityInfo').html(citySummary);
                 $('#progress').html(html);
-                //response.categories[0].name
-                //response.categories[0].score_out_of_10
             }
         }
         );

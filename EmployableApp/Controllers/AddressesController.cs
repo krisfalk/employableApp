@@ -56,16 +56,35 @@ namespace EmployableApp.Controllers
         // GET: Addresses/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Address address = db.Addresses.Find(id);
-            if (address == null)
-            {
-                return HttpNotFound();
-            }
-            return View(address);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Address address = db.Addresses.Find(id);
+            //if (address == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            string region = getRegion();
+            string state = askSelected(region);
+            string city = getCity(state);
+
+
+            var model = new IndexViewModel { };
+            return View(model);
+        }
+        public string getCity(string state)
+        {
+            return "";
+        }
+        public string askSelected(string region)
+        {
+            return "";
+        }
+        public string getRegion()
+        {
+            return "";
         }
 
         // GET: Addresses/Create
