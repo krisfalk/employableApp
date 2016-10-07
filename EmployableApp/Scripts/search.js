@@ -145,6 +145,7 @@ function goToCity(lat, lng) {
     var cityNameShort = "";
     var cityPopulation = "";
     var cityDescription = "";
+    var urbanAreaURL = "";
     var html = "";
         
     $.ajax
@@ -156,6 +157,7 @@ function goToCity(lat, lng) {
             cityNameFull = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].full_name;
             cityNameShort = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].name;
             cityPopulation = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"].population;
+            urbanAreaURL = response._embedded["location:nearest-cities"][0]._embedded["location:nearest-city"]._links["city:urban_area"].href + "scores/";
 
             var html = '<div id="city"><h3>{0}</h3></div>'.replace("{0}", cityNameFull);
 
@@ -164,6 +166,8 @@ function goToCity(lat, lng) {
             html = '<div id="population"><h4>Population: {0}</h4></div>'.replace("{0}", cityPopulation);
 
             $('#populationField').html(html);
+            
+            SetDescription(urbanAreaURL);
 
        }
     }
@@ -182,16 +186,34 @@ function goToCity(lat, lng) {
     //    }
     //    );
 }
-function SetDescription(city) {
-    var currentUrl2 = 'http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=' + city;
+function SetDescription(URL) {
+    alert("2");
+    var citySummary = "";
+    var html = "";
+    var currentUrl2 = URL;
 
     $.ajax
         ({
             type: "GET",
             url: currentUrl2,
-            dataType: "jsonp",
+            //dataType: "jsonp",
             success: function (response) {
-                alert(response);
+                //for(var item in response)
+                //    alert(item);
+                citySummary = '<div id="summaryText">{0}</div>'.replace("{0}", response.summary);
+                for (var i = 0; i < response.categories.length; i++) {
+                    html += '<div>';
+                    html += '<strong>{0}</strong> : Rated {2} out of 10'.replace("{0}", response.categories[i].name).replace("{2}", Math.round(response.categories[i].score_out_of_10));
+                    html += '<br />';
+                    html += '<progress value="{1}" max="100"></progress>'.replace("{1}", response.categories[i].score_out_of_10 * 10);
+                    html += '</div>';
+                    //html += '<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{1}" aria-valuemin="0" aria-valuemax="100" style="width:50%">{0} : Rated {2} out of 10</div>'.replace("{0}", response.categories[i].name).replace("{1}", response.categories[i].score_out_of_10 * 10).replace("{2}", Math.round(response.categories[i].score_out_of_10));
+                    //html += '<br />';
+                }
+                $('#cityInfo').html(citySummary);
+                $('#progress').html(html);
+                //response.categories[0].name
+                //response.categories[0].score_out_of_10
             }
         }
         );
@@ -200,3 +222,5 @@ function SetDescription(city) {
 function saveJob() {
     var checkedBoxes = getCheckedBoxes("checkbox");
 }
+
+'<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">40% Complete (success)</div>'

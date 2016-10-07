@@ -1,6 +1,6 @@
 ﻿@model EmployableApp.Models.IndexViewModel
     @{string myCity = Model.CityName; }
-<body onload="goToCity(@Model.Latitude, @Model.Longitude);SetDescription('@myCity')"> 
+<body onload="goToCity(@Model.Latitude, @Model.Longitude)"> 
 @{
     ViewBag.Title = "Details";
 }
@@ -11,6 +11,10 @@
            <div id="cityName"></div>
            <div id="populationField"></div>
            <div id="cityInfo"></div>
+
+    <div id="progress">
+        
+    </div>
 
 @section Scripts {
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
