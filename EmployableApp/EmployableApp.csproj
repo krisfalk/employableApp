@@ -287,7 +287,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\search.js" />
-    <Content Include="Scripts\survey.js" />
+    <Content Include="Scripts\Survey.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,13 +1,24 @@
 ﻿@model EmployableApp.Models.IndexViewModel
-
+<body onload="setRegionQuestion()">
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Find your ideal place to live! Take our survey:</h2>
 
-<div id="regionQuestion"></div>
+    <div><img src="@Url.Content("~/Content/Images/regionMap.jpg")" /></div>
+<div id="regionQuestion">Loading...</div>
 
-<div id="stateQuestion"></div>
+<div id="stateQuestion">Loading...</div>
 
-<div id="cityFinal"></div>
+<div id="cityFinal">Loading...</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/scripts/pagination.js"></script>
+    <script type="text/javascript" src="~/scripts/search.js"></script>
+    <script type="text/javascript" src="~/scripts/Survey.js"></script>
+
+}
+</body>
