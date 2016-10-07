@@ -8,9 +8,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -53,7 +53,7 @@
 }
 
     
-</table>
+</table>*@
 
 
 <div class="container">
@@ -63,8 +63,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <script type="text/javascript">
@@ -156,13 +154,13 @@
             }),
             success: function (data, textStatus) {
                 if (!data) {
-                    //revertFunc();
+                    alert("Event could not be saved.");
                     return;
                 }
                 calendar.fullCalendar('updateEvent', event);
             },
             error: function () {
-            //    revertFunc();
+                alert("Event could not be saved.");
             }
         });
     };
@@ -178,12 +176,12 @@
 
             success: function (data, textStatus) {
                 if (!data) {
-                    //revertFunc();
+                    alert("Event could not be deleted.");
                     return;
                 }
             },
             error: function () {
-                //    revertFunc();
+                alert("Event could not be deleted.");
             }
         });
     };
@@ -205,13 +203,13 @@
 
             success: function (data, textStatus) {
                 if (!data) {
-                    //revertFunc();
+                    alert("Event could not be created.");
                     return;
                 }
                 calendar.fullCalendar('updateEvent', event);
             },
             error: function () {
-                //    revertFunc();
+                alert("Event could not be created.");
             }
         });
     };

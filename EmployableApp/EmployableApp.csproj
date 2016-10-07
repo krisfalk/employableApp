@@ -232,22 +232,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610041516210_changing datatypes for variables.cs" />
-    <Compile Include="Migrations\201610041516210_changing datatypes for variables.Designer.cs">
-      <DependentUpon>201610041516210_changing datatypes for variables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051229216_day3.cs" />
-    <Compile Include="Migrations\201610051229216_day3.Designer.cs">
-      <DependentUpon>201610051229216_day3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610051437355_added posting date to job model.cs" />
-    <Compile Include="Migrations\201610051437355_added posting date to job model.Designer.cs">
-      <DependentUpon>201610051437355_added posting date to job model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610052029450_update to resume table.cs" />
-    <Compile Include="Migrations\201610052029450_update to resume table.Designer.cs">
-      <DependentUpon>201610052029450_update to resume table.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201610061927367_update.cs" />
     <Compile Include="Migrations\201610061927367_update.Designer.cs">
       <DependentUpon>201610061927367_update.cs</DependentUpon>
@@ -290,6 +274,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -371,18 +357,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610041516210_changing datatypes for variables.resx">
-      <DependentUpon>201610041516210_changing datatypes for variables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051229216_day3.resx">
-      <DependentUpon>201610051229216_day3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610051437355_added posting date to job model.resx">
-      <DependentUpon>201610051437355_added posting date to job model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610052029450_update to resume table.resx">
-      <DependentUpon>201610052029450_update to resume table.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610061927367_update.resx">
       <DependentUpon>201610061927367_update.cs</DependentUpon>
     </EmbeddedResource>

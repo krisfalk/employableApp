@@ -23,7 +23,6 @@ namespace EmployableApp.Controllers
             var userId = User.Identity.GetUserId();
             var events = db.Events.Where(x => x.UserId == userId).ToArray();
             return View(events);
-            //return Json(events, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetCalendarEvents()
