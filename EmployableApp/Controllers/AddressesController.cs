@@ -18,13 +18,17 @@ namespace EmployableApp.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Addresses
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            var job = (from a in db.Jobs where a.JobId == id select a).FirstOrDefault();
             ApplicationUser currentUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
             ProgramAddress userLoc = new ProgramAddress();
             ProgramAddress businessLoc = new ProgramAddress();
 
             userLoc = GetLatAndLng(currentUser.Address, "You Are Here!");
+            businessLoc.lat = job.Latitude;
+            businessLoc.lng = job.Longitude;
+            businessLoc.description = job.CompanyName;
 
             var model = new IndexViewModel
             {

@@ -3,46 +3,69 @@
 @{
     ViewBag.Title = "Index";
 }
+<h2>Your Saved Jobs</h2>
+@using (Html.BeginForm())
+{
 
-<h2>Index</h2>
+    <div class="form-horizontal">
+      
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Favorite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AppliedFor)
-        </th>
-        <th></th>
-    </tr>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="@item.Posting_Link">@Html.DisplayFor(modelItem => item.Title)</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @(item.Favorite? "Yes" : "No")
-        </td>
-        <td>
-           
-            @(item.AppliedFor? "Yes" : "No")
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.JobId })
-        </td>
-    </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Favorite)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AppliedFor)
+                </th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        <a href="@Model.ToList()[i].Posting_Link">@Html.DisplayFor(model => model.ToList()[i].Title)</a>
+                       @Html.HiddenFor(model => model.ToList()[i].Title)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(model => model.ToList()[i].CompanyName)
+                        @Html.DisplayFor(model => model.ToList()[i].CompanyName)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(model => model.ToList()[i].JobId)
+                        @Html.CheckBoxFor(model => model.ToList()[i].Favorite)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(model => model.ToList()[i].JobId)
+                        @Html.CheckBoxFor(model => model.ToList()[i].AppliedFor)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = Model.ToList()[i].JobId })
+                    </td>
+                    <td>
+                        @Html.ActionLink("View City", "MakeCity", new { id = Model.ToList()[i].JobId })
+                    </td>
+                    <td>
+                    @Html.ActionLink("Route To Interview", "MakeRoute", new { id = Model.ToList()[i].JobId })
+                        </td>
+                </tr>
+            }
+
+        </table>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save Changes" class="btn btn-default" />
+                </div>
+            </div>
+            </div>
 }
 
-</table>
+
