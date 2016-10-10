@@ -161,6 +161,21 @@ namespace EmployableApp.Controllers
                     var address = new Address { HouseNumber = model.HouseNumber, AptNumber = model.AptNumber, City = model.City, State = model.State, Street = model.Street, ZipCode = model.Zip };
                     db.Addresses.Add(address);
                     db.SaveChanges();
+
+                    //ApplicationUser myUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+                    using (var con = new ApplicationDbContext())
+                    {
+
+                        user = con.Users.Find(user.Id);
+                        user.Address = address;
+                        user.Address_id = address.Address_id;
+
+                        con.Users.Attach(user);
+                        var entry = con.Entry(user);
+                        entry.Property(e => e.Address_id).IsModified = true;
+                        con.SaveChanges();
+                    }
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

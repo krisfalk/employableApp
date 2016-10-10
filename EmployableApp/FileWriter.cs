@@ -14,10 +14,11 @@ namespace EmployableApp
 
     public class FileWriter
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public FileWriter(Resume resume, ApplicationUser user)
         {
-
-                using (WordprocessingDocument wordDocument = WordprocessingDocument.Create("C:\\Users\\berig\\OneDrive\\DevCodeCamp Projects\\employableApp\\resume2.docx", WordprocessingDocumentType.Document))
+            string path = "C://Users//Kristofer//Documents//GitHub//employableApp//resumeKRIS.docx";
+                using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(path, WordprocessingDocumentType.Document))
                 {
                     MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
 
@@ -60,7 +61,14 @@ namespace EmployableApp
             }
         }
         public void WriteFirstSection(Body body, Resume resume, ApplicationUser user)
-        {
+        {   
+            string houseNumber = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.HouseNumber).SingleOrDefault();
+            string street = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.Street).SingleOrDefault();
+            string city = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.City).SingleOrDefault();
+            string state = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.State).SingleOrDefault();
+            int zip = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.ZipCode).SingleOrDefault();
+            string aptNumber = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.AptNumber).SingleOrDefault();
+            
             Paragraph paraOne = body.AppendChild(new Paragraph());
             Paragraph paraTwo = body.AppendChild(new Paragraph());
             Run run = paraOne.AppendChild(new Run());
@@ -69,12 +77,69 @@ namespace EmployableApp
                 {
                     Ascii = "Comic Sans"
                 });
-            run.PrependChild<RunProperties>(runOnePr);
+            //run.PrependChild<RunProperties>(runOnePr);
             run.AppendChild(new Text(user.FirstName + " " + user.LastName));
-            RunProperties runTwoPr = new RunProperties();
+
+            //RunProperties runTwoPr = new RunProperties();
             Run runTwo = paraTwo.AppendChild(new Run());
-            runTwo.PrependChild<RunProperties>(runTwoPr);
-            runTwo.AppendChild(new Text(user.Email));
+            //runTwo.PrependChild<RunProperties>(runTwoPr);
+            runTwo.AppendChild(new Text("Email: " + user.Email));
+
+            Paragraph paraThree = body.AppendChild(new Paragraph());
+            Run runThree = paraThree.AppendChild(new Run());
+            runThree.AppendChild(new Text(houseNumber + " " + aptNumber + " " + street + ","));
+
+            Paragraph paraFour = body.AppendChild(new Paragraph());
+            Run runFour = paraFour.AppendChild(new Run());
+            runFour.AppendChild(new Text(city + ", " + state + " " + zip));
+
+            Paragraph paraFive = body.AppendChild(new Paragraph());
+            Run runFive = paraFive.AppendChild(new Run());
+            runFive.AppendChild(new Text("Experience:"));
+            Paragraph paraSix = body.AppendChild(new Paragraph());
+            Run runSix = paraSix.AppendChild(new Run());
+            runSix.AppendChild(new Text(resume.JobExperienceOne));
+            Paragraph paraSeven = body.AppendChild(new Paragraph());
+            Run runSeven = paraSeven.AppendChild(new Run());
+            runSeven.AppendChild(new Text(resume.JobExperienceTwo));
+            Paragraph paraEight = body.AppendChild(new Paragraph());
+            Run runEight = paraEight.AppendChild(new Run());
+            runEight.AppendChild(new Text(resume.JobExperienceThree));
+
+            Paragraph paraNine = body.AppendChild(new Paragraph());
+            Run runNine = paraNine.AppendChild(new Run());
+            runNine.AppendChild(new Text("Schooling:"));
+            Paragraph paraTen = body.AppendChild(new Paragraph());
+            Run runTen = paraTen.AppendChild(new Run());
+            runTen.AppendChild(new Text("High School: " + resume.HighSchool));
+            Paragraph paraEleven = body.AppendChild(new Paragraph());
+            Run runEleven = paraEleven.AppendChild(new Run());
+            runEleven.AppendChild(new Text("College: " + resume.College));
+            Paragraph paraTwelve = body.AppendChild(new Paragraph());
+            Run runTwelve = paraTwelve.AppendChild(new Run());
+            runTwelve.AppendChild(new Text("Other Schooling: " + resume.OtherSchooling));
+
+            Paragraph paraThirteen = body.AppendChild(new Paragraph());
+            Run runThirteen = paraThirteen.AppendChild(new Run());
+            runThirteen.AppendChild(new Text("Skills: " + resume.Skills));
+
+            Paragraph paraFourteen = body.AppendChild(new Paragraph());
+            Run runFourteen = paraFourteen.AppendChild(new Run());
+            runFourteen.AppendChild(new Text("References:"));
+
+            Paragraph paraFifteen = body.AppendChild(new Paragraph());
+            Run runFifteen = paraFifteen.AppendChild(new Run());
+            runFifteen.AppendChild(new Text(resume.ReferenceOne));
+
+            Paragraph paraSixteen = body.AppendChild(new Paragraph());
+            Run runSixteen = paraSixteen.AppendChild(new Run());
+            runSixteen.AppendChild(new Text(resume.ReferenceTwo));
+
+            Paragraph paraSeventeen = body.AppendChild(new Paragraph());
+            Run runSeventeen = paraSeventeen.AppendChild(new Run());
+            runSeventeen.AppendChild(new Text(resume.ReferenceThree));
+
+
         }
     }
 }
