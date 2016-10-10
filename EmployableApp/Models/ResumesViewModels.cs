@@ -4,11 +4,23 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
+
 namespace EmployableApp.Models
 {
     public class CreateViewModel
     {
 
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         [Display(Name = "Job Experience 1")]
         public string JobExperienceOne { get; set; }

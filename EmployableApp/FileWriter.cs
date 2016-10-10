@@ -15,7 +15,7 @@ namespace EmployableApp
     public class FileWriter
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public FileWriter(Resume resume, ApplicationUser user)
+        public FileWriter(CreateViewModel resume, ApplicationUser user)
         {
             string path = "C://Users//Kristofer//Documents//GitHub//employableApp//resumeKRIS.docx";
                 using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(path, WordprocessingDocumentType.Document))
@@ -60,14 +60,14 @@ namespace EmployableApp
                 package.MainDocumentPart.Document.Save();
             }
         }
-        public void WriteFirstSection(Body body, Resume resume, ApplicationUser user)
-        {   
-            string houseNumber = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.HouseNumber).SingleOrDefault();
-            string street = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.Street).SingleOrDefault();
-            string city = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.City).SingleOrDefault();
-            string state = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.State).SingleOrDefault();
-            int zip = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.ZipCode).SingleOrDefault();
-            string aptNumber = db.Addresses.Where(x => x.Address_id == user.Address_id).Select(x => x.AptNumber).SingleOrDefault();
+        public void WriteFirstSection(Body body, CreateViewModel resume, ApplicationUser user)
+        {
+            string houseNumber = resume.HouseNumber;
+            string street = resume.Street;
+            string city = resume.City;
+            string state = resume.State;
+            int zip = resume.ZipCode;
+            string aptNumber = resume.AptNumber;
             
             Paragraph paraOne = body.AppendChild(new Paragraph());
             Paragraph paraTwo = body.AppendChild(new Paragraph());

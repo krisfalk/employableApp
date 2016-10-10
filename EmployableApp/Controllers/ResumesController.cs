@@ -40,8 +40,32 @@ namespace EmployableApp.Controllers
         // GET: Resumes/Create
         public ActionResult Create()
         {
+            var resumes = db.Resumes.Include(c => c.ApplicationUser).ToList();
+            var userId = User.Identity.GetUserId();
+            var currentResume = (from a in resumes where a.UserId == userId select a).FirstOrDefault();
+
+            var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
+            var currentAddress = (from b in db.Addresses where b.Address_id == user.Address_id select b).FirstOrDefault();
+
+
+            var viewModel = new CreateViewModel
+            {
+
+
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                Street = currentAddress.Street,
+                City = currentAddress.City,
+                AptNumber = currentAddress.AptNumber,
+                HouseNumber = currentAddress.HouseNumber,
+                State = currentAddress.State,
+                ZipCode = currentAddress.ZipCode,
+                 
+            };
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
-            return View();
+            return View(viewModel);
         }
 
         // POST: Resumes/Create
@@ -49,16 +73,31 @@ namespace EmployableApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateViewModel model )
+        public ActionResult Create(CreateViewModel model)
         {
             var userId = User.Identity.GetUserId();
 
             var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
 
+            var resume = new Resume
+            {
+                UserId = userId,
+                JobExperienceOne = model.JobExperienceOne,
+                JobExperienceTwo = model.JobExperienceTwo,
+                JobExperienceThree = model.JobExperienceThree,
+                College = model.College,
+                HighSchool = model.HighSchool,
+                OtherSchooling = model.OtherSchooling,
+                Skills = model.Skills,
+                ReferenceOne = model.ReferenceOne,
+                ReferenceTwo = model.ReferenceTwo,
+                ReferenceThree = model.ReferenceThree,
+            };
+
             if (ModelState.IsValid)
             {
 
-                FileWriter fileWriter = new FileWriter(resume, user);
+                FileWriter fileWriter = new FileWriter(model, user);
 
                 //db.Resumes.Add(resume);
                 //db.SaveChanges();
