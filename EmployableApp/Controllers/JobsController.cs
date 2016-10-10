@@ -19,8 +19,9 @@ namespace EmployableApp.Controllers
         public ActionResult SavedJobs()
         {
             var userId = User.Identity.GetUserId();
-            var job = db.Jobs.Include(j => j.ApplicationUser);
-            return View(job.ToList());
+            var jobs = (from a in db.Jobs where a.UserId == userId select a).ToList();
+            
+            return View(jobs);
         }
 
         [HttpPost]
@@ -112,8 +113,8 @@ namespace EmployableApp.Controllers
             foreach (JobListing job in savedJobs)
             {
 
-                string[] data = job.Information.Split(',');
-                DateTime dateTime = DateTime.Parse(data[4]);
+                string[] data = job.Information.Split('*');
+                DateTime dateTime = DateTime.Parse(data[3]);
 
                 var newJob = new Job { UserId = userId, Title = job.JobTitle, Posting_Link = job.Link, Latitude = Convert.ToDouble(data[0]), Longitude = Convert.ToDouble(data[1]), CompanyName = data[2], PostingDate = dateTime };
                 db.Jobs.Add(newJob);
