@@ -106,7 +106,7 @@ namespace EmployableApp.Controllers
            
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", resume.UserId);
-            return View(resume);
+            return View(model);
         }
 
         // GET: Resumes/Edit/5
