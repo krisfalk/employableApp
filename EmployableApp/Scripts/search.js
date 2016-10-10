@@ -90,7 +90,7 @@ function displayResultsInHtml(readyResults){
     readyResults = readyResults.forEach(getDisplayForTrack);
 
     function getDisplayForTrack(individual) {
-        htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
+        htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "*" + individual.longitude + "*" + individual.company + "*" + individual.postDate + "*" + individual.city + "*" + individual.state);
         htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
         htmlToAdd += '<div class="col-sm-3"><center>'+ individual.postDate + '</center></div>'
         htmlToAdd += '<div class="col-sm-3"><center>' + individual.company + '</center></div>'
@@ -137,7 +137,7 @@ function sortBySortInput(readyResults, typeChoice)
 
 function getCheckedBoxes(checkbox) {
  
-    var checkBoxes = $("#result div input");
+    var checkBoxes = $("#result div #isSaved");
     var isChecked = checkBoxes.map((x) => { return checkBoxes[x].checked });
     var links = $("[id=firstA]");
 
