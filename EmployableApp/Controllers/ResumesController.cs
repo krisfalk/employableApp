@@ -50,8 +50,6 @@ namespace EmployableApp.Controllers
 
             var viewModel = new CreateViewModel
             {
-
-
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PhoneNumber = user.PhoneNumber,

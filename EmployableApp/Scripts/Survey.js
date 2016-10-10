@@ -96,7 +96,7 @@ function DisplayFoundCity(city, lat, lng) {
            .replace("longitude", lng)
            .replace("latitude", lat)
            .replace("city", city)
-           .replace("city2", city) + '</a></div></form>';
+           .replace("city2", city) + '</form>';
 
     $('#cityFinal').html(html);
 }

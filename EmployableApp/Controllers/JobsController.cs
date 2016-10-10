@@ -18,8 +18,43 @@ namespace EmployableApp.Controllers
         // GET: Jobs
         public ActionResult SavedJobs()
         {
+            var userId = User.Identity.GetUserId();
             var job = db.Jobs.Include(j => j.ApplicationUser);
             return View(job.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult SavedJobs(IEnumerable<Job> jobs)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var job in jobs)
+                {
+                    var currentJob = (from a in db.Jobs where a.JobId == job.JobId select a).FirstOrDefault();
+                    if (job.Favorite == true)
+                    {
+                        currentJob.Favorite = true;
+                    }
+                    else
+                    {
+                        currentJob.Favorite = false;
+                    }
+
+                    if (job.AppliedFor == true)
+                    {
+                        currentJob.AppliedFor = true;
+                    }
+                    else
+                    {
+                        currentJob.AppliedFor = false;
+                    }
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("SavedJobs");
+            }
+            var jobList = db.Jobs.Include(j => j.ApplicationUser);
+            return View(jobList.ToList());
         }
 
 
@@ -93,21 +128,22 @@ namespace EmployableApp.Controllers
             public string Longitude { get; set; }
             public string City { get; set; }
         }
-
-        [AllowAnonymous]
-        public ActionResult DisplayCity(LatLng myCoords)
+        public ActionResult MakeRoute(int? id)
         {
-            string lat = myCoords.Latitude;
-            string lng = myCoords.Longitude;
-            string city = myCoords.City;
+            return RedirectToAction("Index", "Addresses", new { id = id });
+        }
+        public ActionResult MakeCity(int? id)
+        {
+            var job = (from a in db.Jobs where a.JobId == id select a).FirstOrDefault();
 
-            var model = new IndexViewModel
-            {
-                Latitude = lat,
-                Longitude = lng,
-                CityName = city
-            };
-            return View(model);
+            LatLng latLng = new LatLng();
+
+            latLng.Latitude = job.Latitude.ToString();
+            latLng.Longitude = job.Longitude.ToString();
+
+
+            return RedirectToAction("Details", latLng);
+        
             
         }
         // GET: Jobs/Create
