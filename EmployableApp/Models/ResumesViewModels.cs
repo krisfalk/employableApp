@@ -22,11 +22,11 @@ namespace EmployableApp.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-        [Display(Name = "Job Experience 1")]
+        [Display(Name = "Job 1")]
         public string JobExperienceOne { get; set; }
-        [Display(Name = "Job Experience 2")]
+        [Display(Name = "Job 2")]
         public string JobExperienceTwo { get; set; }
-        [Display(Name = "Job Experience 3")]
+        [Display(Name = "Job 3")]
         public string JobExperienceThree { get; set; }
         [Display(Name = "High School")]
         public string HighSchool { get; set; }
@@ -35,11 +35,11 @@ namespace EmployableApp.Models
         public string OtherSchooling { get; set; }
         public string Skills { get; set; }
 
-        [Display(Name = "Reference 1")]
+        [Display(Name = "Ref. 1")]
         public string ReferenceOne { get; set; }
-        [Display(Name = "Reference 2")]
+        [Display(Name = "Ref. 2")]
         public string ReferenceTwo { get; set; }
-        [Display(Name = "Reference 3")]
+        [Display(Name = "Ref. 3")]
         public string ReferenceThree { get; set; }
         [Display(Name = "House Number")]
         public string HouseNumber { get; set; }
