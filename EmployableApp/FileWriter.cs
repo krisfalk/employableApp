@@ -7,7 +7,11 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using EmployableApp.Models;
-
+using System.Net.Mail;
+using System.Text;
+using System.Web.Hosting;
+using System.Web.UI;
+using System.Windows.Forms;
 
 namespace EmployableApp
 {
@@ -17,7 +21,7 @@ namespace EmployableApp
         private ApplicationDbContext db = new ApplicationDbContext();
         public FileWriter(CreateViewModel resume, ApplicationUser user)
         {
-            string path = "C://Users//Kristofer//Documents//GitHub//employableApp//resumeKRIS.docx";
+            string path = System.Web.HttpContext.Current.Server.MapPath("~/resumeKRIS1.docx");
                 using (WordprocessingDocument wordDocument = WordprocessingDocument.Create(path, WordprocessingDocumentType.Document))
                 {
                     MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
@@ -37,6 +41,14 @@ namespace EmployableApp
 
                 WriteFirstSection(body, resume, user);
                 wordDocument.Close();
+
+                string emailMsg = "Dear " + user.FirstName + " " + user.LastName + ",\r\n\r\nHere is your new resume.\r\nYou're welcome!! Please do not reply!!\r\n\r\nSincerely,\r\n.employable Team";
+                string emailAddr = "employable.app@gmail.com";
+
+                if(SendMail(emailAddr, user.Email, "Your new Resume from .employable", emailMsg))
+                {
+                    MessageBox.Show("Your resume has been sent to your email address.");
+                }
             }
 
       
@@ -139,7 +151,72 @@ namespace EmployableApp
             Run runSeventeen = paraSeventeen.AppendChild(new Run());
             runSeventeen.AppendChild(new Text(resume.ReferenceThree));
 
+        }
+        public static bool SendMail(string strFrom, string strTo, string strSubject, string strMsg)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
+                mail.From = new MailAddress(strFrom);
+                mail.To.Add(strTo);
+                mail.Subject = strSubject;
+                mail.Body = strMsg;
+                Attachment at = new Attachment(System.Web.HttpContext.Current.Server.MapPath("~/resumeKRIS.docx"));
+                mail.Attachments.Add(at);
+
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("employable.app", "employable");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            //try
+            //{
+            //    MailMessage mailMessage = new MailMessage();
+            //    mailMessage.To.Add(strTo);
+            //    mailMessage.From = new MailAddress(strFrom);
+            //    mailMessage.Subject = "ASP.NET e-mail test";
+            //    mailMessage.Body = "Hello world,\n\nThis is an ASP.NET test e-mail!";
+            //    SmtpClient smtpClient = new SmtpClient("mail.your-isp.com");
+            //    smtpClient.Send(mailMessage);
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+
+            //try
+            //{
+            //    // Create the mail message
+            //    MailMessage objMailMsg = new MailMessage(strFrom, strTo);
+
+            //    objMailMsg.BodyEncoding = Encoding.UTF8;
+            //    objMailMsg.Subject = strSubject;
+            //    objMailMsg.Body = strMsg;
+            //    Attachment at = new Attachment(System.Web.HttpContext.Current.Server.MapPath("~/resumeKRIS.docx"));
+            //    objMailMsg.Attachments.Add(at);
+            //    objMailMsg.Priority = MailPriority.High;
+            //    objMailMsg.IsBodyHtml = true;
+
+            //    //prepare to send mail via SMTP transport
+            //    SmtpClient objSMTPClient = new SmtpClient();
+            //    objSMTPClient.DeliveryMethod = SmtpDeliveryMethod.PickupDirectoryFromIis;
+            //    objSMTPClient.Send(objMailMsg);
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
     }
 }
