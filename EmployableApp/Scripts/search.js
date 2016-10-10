@@ -91,9 +91,6 @@ function displayResultsInHtml(readyResults){
 
     function getDisplayForTrack(individual) {
 
-
-
-
         htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "*" + individual.longitude + "*" + individual.company + "*" + individual.postDate + "*" + individual.city + "*" + individual.state);
         htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
         htmlToAdd += '<div class="col-sm-3"><center>'+ individual.postDate + '</center></div>'

@@ -232,7 +232,7 @@ namespace EmployableApp.Controllers
             Job job = db.Jobs.Find(id);
             db.Jobs.Remove(job);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SavedJobs");
         }
 
         protected override void Dispose(bool disposing)
