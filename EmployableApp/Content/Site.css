@@ -37,10 +37,14 @@ textarea {
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 30px;
+    padding: 5%;
+    font-size-adjust: .7;
     color: #818181;
     display: block;
-    transition: 0.3s
+    transition: 0.3s;
+    text-align: center;
+
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -52,7 +56,6 @@ textarea {
     top: 0;
     right: 25px;
     font-size: 36px;
-    margin-left: 50px;
 }
 
 @media screen and (max-height: 450px) {
@@ -79,6 +82,7 @@ textarea {
     text-align: center;
     background-color: black;
     margin-bottom: 0;
+    margin-top: 8vh;
 
 }
 .container {
@@ -154,7 +158,6 @@ textarea {
   
 }
 .footer {
-        position: absolute;
         bottom: 0;
         width: 100%;
         color: black;
