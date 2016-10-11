@@ -88,6 +88,7 @@ textarea {
 .container {
     margin: 0;
     width: 100%;
+    padding: 0;
 }
 
 .image-wrap{
@@ -157,8 +158,13 @@ textarea {
     transform: scale(1.1);
   
 }
-.footer {
+footer {
         bottom: 0;
         width: 100%;
-        color: black;
+        color: white;
+        background-color: black;
+        height: 20vh; 
+        padding: 0;
     }
+
+

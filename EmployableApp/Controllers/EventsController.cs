@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EmployableApp.Models;
-
+using System.Threading;
 using System.Web.Helpers;
 using Microsoft.AspNet.Identity;
 
@@ -61,7 +61,16 @@ namespace EmployableApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id, UserId, start, end, title, editable, allDay")] Event @event)
         {
-            @event.UserId = User.Identity.GetUserId();
+           string userId = User.Identity.GetUserId();
+
+            @event.UserId = userId;
+            if (db.Events == null)
+            {
+                EmailReminder reminder = new EmailReminder();
+                Thread thread = new Thread(new ThreadStart(StartReminders));
+                thread.Start();
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);
@@ -71,6 +80,12 @@ namespace EmployableApp.Controllers
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName", @event.UserId);
             return View(@event);
+        }
+        public void StartReminders()
+        {
+            string userId = User.Identity.GetUserId();
+            EmailReminder reminder = new EmailReminder();
+            reminder.RunReminders(userId);
         }
 
         // GET: Events/Edit/5

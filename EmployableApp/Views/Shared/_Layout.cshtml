@@ -14,9 +14,7 @@
 </head>
 <body style="margin-left: 7vw;">
     <div class="navbar sidenav" id="mySideNav" style="width: 10vw;">
-        @Html.ActionLink("Home", "Index", "Home")
-        @Html.ActionLink("About", "About", "Home")
-        @Html.ActionLink("Contact", "Contact", "Home")
+
         @Html.ActionLink("City Match", "Details", "Addresses")
 
         @Html.Partial("_LoginPartial")
@@ -27,8 +25,11 @@
     <div class="body-content" style="margin: 9vw;">
         @RenderBody()
         <hr />
-        <footer class="footer">
-            <p>&copy; @DateTime.Now.Year - dotemployable.com</p>
+        <footer class="navbar" >
+            @Html.ActionLink("Contact", "Contact", "Home")
+                <br />
+            @Html.ActionLink("About", "About", "Home")
+                <p>&copy; @DateTime.Now.Year - dotemployable.com</p>
         </footer>
     </div>
 
