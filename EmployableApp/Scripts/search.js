@@ -99,6 +99,7 @@ function displayResultsInHtml(readyResults){
             .replace("longitude", individual.longitude)
             .replace("latitude", individual.latitude)
             .replace("city", individual.city)
+            .replace("city2", individual.city) + '</a></form></center></div><div class="row"><div class="col-sm-12"><hr /></div></div>';
 
 
         //htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "*" + individual.longitude + "*" + individual.company + "*" + individual.postDate + "*" + individual.city + "*" + individual.state);     
