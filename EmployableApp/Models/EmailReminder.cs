@@ -31,11 +31,14 @@ namespace EmployableApp.Models
             
             var eventsList = (from a in db.Events where a.UserId == userID select a).ToList();
 
+
             foreach (var item in eventsList)
             {
+                string Title = item.title;
                 if (item.end == DateTime.Today || item.start == DateTime.Today)
                 {
-                    MessageBox.Show("Reminder!!");
+                   
+                    MessageBox.Show("Reminder. You have an event today: " + Title.ToString());
                     //send email reminder
                     //pop up alert on page
                 }
