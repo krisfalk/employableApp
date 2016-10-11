@@ -64,12 +64,12 @@ namespace EmployableApp.Controllers
            string userId = User.Identity.GetUserId();
 
             @event.UserId = userId;
-            if (db.Events == null)
-            {
-                EmailReminder reminder = new EmailReminder();
+
+            //if (db.Events == null)
+            //{
                 Thread thread = new Thread(new ThreadStart(StartReminders));
                 thread.Start();
-            }
+            //}
             
             if (ModelState.IsValid)
             {

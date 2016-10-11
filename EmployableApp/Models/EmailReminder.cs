@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Timers;
 using System.Data;
+using System.Windows.Forms;
 
 
 namespace EmployableApp.Models
@@ -17,12 +18,11 @@ namespace EmployableApp.Models
         {
             userID = userId;
 
-            Timer aTimer = new Timer();
+            System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 1000 * 60 * 60 * 24;
+            aTimer.Interval = 1000 * 60;// * //60 * //24;
             aTimer.Enabled = true;
             aTimer.Start();
-
         }
 
         //Specify what you want to happen when the Elapsed event is raised.
@@ -30,15 +30,17 @@ namespace EmployableApp.Models
         {
             
             var eventsList = (from a in db.Events where a.UserId == userID select a).ToList();
+
             foreach (var item in eventsList)
             {
-                if (item.end == DateTime.Now || item.start == DateTime.Now)
+                if (item.end == DateTime.Today || item.start == DateTime.Today)
                 {
+                    MessageBox.Show("Reminder!!");
                     //send email reminder
                     //pop up alert on page
                 }
             }
-
+            
         }
 
 
