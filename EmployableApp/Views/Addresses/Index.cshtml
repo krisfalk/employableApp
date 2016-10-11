@@ -27,7 +27,7 @@
             var marker = new google.maps.Marker({
                 position: { lat: @Model.UserLocation.lat , lng: @Model.UserLocation.lng},
                 map: map,
-                title: 'Hello'
+                title: '@Model.UserLocation.description'
             });
             var lineCoordinates = [];
             coordinates_array = new google.maps.LatLng(@Model.BusinessLocation.lat, @Model.BusinessLocation.lng);

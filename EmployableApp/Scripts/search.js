@@ -92,9 +92,9 @@ function displayResultsInHtml(readyResults){
     function getDisplayForTrack(individual) {
         htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
         htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
-        htmlToAdd += '<div class="col-sm-3"><center>'+ individual.postDate + '</center></div>'
+        htmlToAdd += '<div class="col-sm-3"><center>' + individual.postDate + '</center></div>'
         htmlToAdd += '<div class="col-sm-3"><center>' + individual.company + '</center></div>'
-        htmlToAdd += '<div class="col-sm-2"><center><form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'   
+        htmlToAdd += '<div class="col-sm-2"><center><form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
             .replace("longitude", individual.longitude)
             .replace("latitude", individual.latitude)
             .replace("city", individual.city)
@@ -112,7 +112,6 @@ function displayResultsInHtml(readyResults){
     }
 
     $('#result').html(htmlToAdd);
-
 }
 
 
@@ -137,7 +136,7 @@ function sortBySortInput(readyResults, typeChoice)
 
 function getCheckedBoxes(checkbox) {
  
-    var checkBoxes = $("#result div input");
+    var checkBoxes = $("#result div #isSaved");
     var isChecked = checkBoxes.map((x) => { return checkBoxes[x].checked });
     var links = $("[id=firstA]");
 

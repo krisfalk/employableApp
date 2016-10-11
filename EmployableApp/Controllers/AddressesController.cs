@@ -52,8 +52,7 @@ namespace EmployableApp.Controllers
             var point = locationService.GetLatLongFromAddress(fullAddress);
             mapAddress.lat = point.Latitude;
             mapAddress.lng = point.Longitude;
-
-
+            
             return mapAddress;
         }
 
