@@ -90,6 +90,7 @@ function displayResultsInHtml(readyResults){
     readyResults = readyResults.forEach(getDisplayForTrack);
 
     function getDisplayForTrack(individual) {
+<<<<<<< HEAD
         htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
         htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
         htmlToAdd += '<div class="col-sm-3"><center>' + individual.postDate + '</center></div>'
@@ -98,17 +99,26 @@ function displayResultsInHtml(readyResults){
             .replace("longitude", individual.longitude)
             .replace("latitude", individual.latitude)
             .replace("city", individual.city)
+=======
+
+        htmlToAdd += '<div class="col-sm-1"><center> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "*" + individual.longitude + "*" + individual.company + "*" + individual.postDate + "*" + individual.city + "*" + individual.state);
+        htmlToAdd += '</center></div><div class="col-sm-3"><center><a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+        htmlToAdd += '<div class="col-sm-3"><center>'+ individual.postDate + '</center></div>'
+        htmlToAdd += '<div class="col-sm-3"><center>' + individual.company + '</center></div>'
+        htmlToAdd += '<div class="col-sm-2"><center><form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'   
+            .replace("longitude", individual.longitude)
+            .replace("latitude", individual.latitude)
+            .replace("city", individual.city)
+>>>>>>> 82a4609bbd0155b54924243f924171b9c0ef4152
             .replace("city2", individual.city) + '</a></form></center></div><div class="row"><div class="col-sm-12"><hr /l></div></div>';
-
-
-        //original results display
-        //htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "," + individual.longitude + "," + individual.company + "," + individual.postDate + "," + individual.city + "," + individual.state);
-        //htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';
+   
+        //htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "*" + individual.longitude + "*" + individual.company + "*" + individual.postDate + "*" + individual.city + "*" + individual.state);     
+        //htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';      
         //htmlToAdd += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
         //    .replace("longitude", individual.longitude)
         //    .replace("latitude", individual.latitude)
         //    .replace("city", individual.city)
-        //    .replace("city2", individual.city) + '</a></div></form>';
+        //    .replace("city2", individual.city) + '</form>';
     }
 
     $('#result').html(htmlToAdd);
