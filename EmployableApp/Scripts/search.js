@@ -100,6 +100,7 @@ function displayResultsInHtml(readyResults){
             .replace("latitude", individual.latitude)
             .replace("city", individual.city)
 
+
         //htmlToAdd += '<div> <input checked="unchecked" id="isSaved" type="checkbox" name="checkbox" value="{0}"/>'.replace("{0}", individual.latitude + "*" + individual.longitude + "*" + individual.company + "*" + individual.postDate + "*" + individual.city + "*" + individual.state);     
         //htmlToAdd += '<a href="urlLink" target="_blank" id="firstA">'.replace("urlLink", individual.url) + 'title'.replace("title", individual.jobTitle) + '</a></div>';      
         //htmlToAdd += '<form action="/Jobs/Details" method = "post"><input type="text" name="Latitude" value = "latitude" hidden><input type="text" name="Longitude" value = "longitude" hidden><input type="text" name="City" value = "city" hidden><input type="submit" value = "city2">'
