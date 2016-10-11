@@ -42,7 +42,7 @@ namespace EmployableApp.Controllers
         {
             var resumes = db.Resumes.Include(c => c.ApplicationUser).ToList();
             var userId = User.Identity.GetUserId();
-            var currentResume = (from a in resumes where a.UserId == userId select a).FirstOrDefault();
+            var currentResume = (from a in resumes where a.UserId == userId select a).LastOrDefault();
 
             var user = db.Users.Where(p => p.Id == userId).FirstOrDefault();
             var currentAddress = (from b in db.Addresses where b.Address_id == user.Address_id select b).FirstOrDefault();
@@ -60,6 +60,17 @@ namespace EmployableApp.Controllers
                 HouseNumber = currentAddress.HouseNumber,
                 State = currentAddress.State,
                 ZipCode = currentAddress.ZipCode,
+                JobExperienceOne = currentResume.JobExperienceOne,
+                JobExperienceTwo = currentResume.JobExperienceTwo,
+                JobExperienceThree = currentResume.JobExperienceThree,
+                HighSchool = currentResume.HighSchool,
+                College = currentResume.College,
+                OtherSchooling = currentResume.OtherSchooling,
+                Skills = currentResume.Skills,
+                ReferenceOne = currentResume.ReferenceOne,
+                ReferenceTwo = currentResume.ReferenceTwo,
+                ReferenceThree = currentResume.ReferenceThree
+
                  
             };
             ViewBag.UserId = new SelectList(db.Users, "Id", "FirstName");
@@ -97,9 +108,9 @@ namespace EmployableApp.Controllers
 
                 FileWriter fileWriter = new FileWriter(model, user);
 
-                //db.Resumes.Add(resume);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+                db.Resumes.Add(resume);
+                db.SaveChanges();
+                return RedirectToAction("Create");
             }
            
 
