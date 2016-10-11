@@ -97,9 +97,9 @@ namespace EmployableApp.Controllers
 
                 FileWriter fileWriter = new FileWriter(model, user);
 
-                //db.Resumes.Add(resume);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+                db.Resumes.Add(resume);
+                db.SaveChanges();
+                return RedirectToAction("Create");
             }
            
 
