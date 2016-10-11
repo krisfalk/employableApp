@@ -22,16 +22,21 @@
     </div>
 
 
-    <div class="body-content" style="margin: 9vw;">
+    <div class="body-content" style="margin-top: 6vw; margin-left: 4vw;">
         @RenderBody()
         <hr />
-        <footer class="navbar" >
-            @Html.ActionLink("Contact", "Contact", "Home")
-                <br />
+        <footer style="padding: 4vh">
+            <h1>Want to Learn More?</h1>
             @Html.ActionLink("About", "About", "Home")
-                <p>&copy; @DateTime.Now.Year - dotemployable.com</p>
+            <br />
+            @Html.ActionLink("Contact", "Contact", "Home")
+
+
+            <center>
+                <p style="margin-left: 2vh;">&copy; @DateTime.Now.Year - dotemployable.com</p>
+            </center>
         </footer>
-    </div>
+</div>
 
    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")

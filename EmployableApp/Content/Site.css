@@ -2,6 +2,12 @@
     padding-top: 30px;
     padding-bottom: 20px;
     background-color: rgb(200,230,230);
+
+}
+body-content{
+    margin: 0;
+
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -32,6 +38,9 @@ textarea {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+}
+ul .navbar {
+padding: 0;
 }
 
 .sidenav a {
@@ -82,7 +91,6 @@ textarea {
     text-align: center;
     background-color: black;
     margin-bottom: 0;
-    margin-top: 8vh;
 
 }
 .container {
@@ -159,12 +167,31 @@ textarea {
   
 }
 footer {
-        bottom: 0;
+        bottom: 0px;
         width: 100%;
         color: white;
         background-color: black;
-        height: 20vh; 
+        height: 25vh; 
         padding: 0;
+
+        margin: 0;
     }
+footer a {
+    font-size: large;
+    line-height: 2;
+    text-indent: 10px;
+    font-family: 'Californian FB';
+    color: rgb(200,255,255);
+}
+footer h1{
+    font-family: 'Californian FB';
+    font-size: 2.5vh;
+    color: gray;
+}
+footer p{
+    position:fixed center;
+    z-index: 1;
+    bottom: 0;
+}
 
 

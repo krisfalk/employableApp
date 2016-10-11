@@ -1,18 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
     @Html.AntiForgeryToken()
 
-    <ul class="navbar">
-        <li>
-            @Html.ActionLink("View Jobs", "SavedJobs", "Jobs")
+  
             @Html.ActionLink("Job Search", "Search", "Jobs")
-            @Html.ActionLink("Resume Help", "Create", "Resumes")
+            @Html.ActionLink("Saved Jobs", "SavedJobs", "Jobs")
             <a href="~/Events/Index"> Calendar</a>
-<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+            @Html.ActionLink("Resume Help", "Create", "Resumes")
+            
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+
     }
 }
 else

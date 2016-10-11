@@ -15,32 +15,27 @@
     <div class="navbar sidenav" id="mySideNav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         @Html.ActionLink("Home", "Index", "Home")
-        
+
         @Html.ActionLink("City Match", "Details", "Addresses")
         @Html.Partial("_LoginPartial")
 
     </div>
-    <span style="font-size: 30px; cursor: pointer" onclick="openNav()"> &#9776; Menu</span>
 
 
     <div class="body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <div class="container">
-            <div class="row">
-                <div class="col-sm-11">
-                   <p style="margin-top: 15vh;">&copy; @DateTime.Now.Year - dotemployable.com</p>
-                </div>
-                <div class="col-sm-1" style="font-size: 2.5vh; margin-top: 2vh; padding: 0; text-align: right;">
-            @Html.ActionLink("About", "About", "Home")
-            <br />
-            <br />
-            @Html.ActionLink("Contact", "Contact", "Home")
-                </div>
-                </div>
-                </div>
-        </footer>
+            <footer style="padding: 4vh">
+                <h1>Want to Learn More?</h1>
+                    @Html.ActionLink("About", "About", "Home")
+                    <br />
+                    @Html.ActionLink("Contact", "Contact", "Home")
+
+
+                                <center>
+                    <p style="margin-left: 2vh;">&copy; @DateTime.Now.Year - dotemployable.com</p>
+                </center>
+            </footer>
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")*@
