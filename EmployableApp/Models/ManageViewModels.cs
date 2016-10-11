@@ -18,6 +18,7 @@ namespace EmployableApp.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public string CityName { get; set; }
+        public List<ProgramAddress> programmed { get; set; }
     }
 
     public class ManageLoginsViewModel

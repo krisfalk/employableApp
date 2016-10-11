@@ -4,34 +4,42 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Route to business</h2>
+
 
 
 <head>
     <style>
         #map {
             width: 100%;
-            height: 400px;
+            height: 600px;
         }
     </style>
 </head>
-
+<body>
     <div id="map"></div>
     <script>
         function initMap() {
             var mapDiv = document.getElementById('map');
             var map = new google.maps.Map(mapDiv, {
                 center: {lat: 43.137174, lng: -88.092327},
-                zoom: 9
+                zoom: 8
             });
+            @foreach (var item in Model.programmed) {
+       <text>
             var marker = new google.maps.Marker({
-                position: { lat: @Model.UserLocation.lat , lng: @Model.UserLocation.lng},
+                position: { lat: @item.lat , lng: @item.lng},
                 map: map,
-                title: '@Model.UserLocation.description'
-            });
+                title: '@item.description'
+            });</text> }
             var lineCoordinates = [];
-            coordinates_array = new google.maps.LatLng(@Model.BusinessLocation.lat, @Model.BusinessLocation.lng);
+            @foreach(var item in Model.programmed)
+             {
+                <text>
+
+            coordinates_array = new google.maps.LatLng(@item.lat, @item.lng);
             lineCoordinates.push(coordinates_array);
+            </text>
              };
 
             var path = new google.maps.MVCArray();
@@ -57,9 +65,8 @@
                             }
                         }
                     });
-                }}
+                }}}
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3KoWWl0oYiaKZJBpRBR2lg8_LNH5FuNw&callback=initMap">
     </script>
-

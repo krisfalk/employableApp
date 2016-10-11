@@ -30,10 +30,13 @@ namespace EmployableApp.Controllers
             businessLoc.lng = job.Longitude;
             businessLoc.description = job.CompanyName;
 
+            List<ProgramAddress> myAddresses = new List<ProgramAddress>();
+            myAddresses.Add(userLoc);
+            myAddresses.Add(businessLoc);
+
             var model = new IndexViewModel
             {
-                UserLocation = userLoc,
-                BusinessLocation = businessLoc
+                programmed = myAddresses
             };
             return View(model);
         }

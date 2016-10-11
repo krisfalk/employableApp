@@ -10,26 +10,26 @@ namespace EmployableApp.Models
     public class EmailReminder
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public void RunReminders()
-        {
+        //public void RunReminders()
+        //{
          
-            Timer aTimer = new Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 500000000;
-            aTimer.Enabled = true;
+        //    Timer aTimer = new Timer();
+        //    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+        //    aTimer.Interval = 500000000;
+        //    aTimer.Enabled = true;
 
        
-        }
+        //}
 
         // Specify what you want to happen when the Elapsed event is raised.
-        private static void OnTimedEvent(object source, ElapsedEventArgs e)
-        {
-            foreach (var item in db.Events)
-            {
+        //private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        //{
+        //    foreach (var item in db.Events)
+        //    {
 
-            }
+        //    }
 
-        }
+        //}
 
 
     }
